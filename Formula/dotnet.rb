@@ -166,48 +166,48 @@ end
 
 __END__
 diff --git a/src/SourceBuild/tarball/content/repos/installer.proj b/src/SourceBuild/tarball/content/repos/installer.proj
-index f6803f4cf..da8caeda8 100644
+index 3a9756a27..31165a50b 100644
 --- a/src/SourceBuild/tarball/content/repos/installer.proj
 +++ b/src/SourceBuild/tarball/content/repos/installer.proj
 @@ -7,7 +7,7 @@
-
+ 
    <PropertyGroup>
      <OverrideTargetRid>$(TargetRid)</OverrideTargetRid>
 -    <OverrideTargetRid Condition="'$(TargetOS)' == 'OSX'">osx-x64</OverrideTargetRid>
 +    <OverrideTargetRid Condition="'$(TargetOS)' == 'OSX'">osx-$(Platform)</OverrideTargetRid>
      <OSNameOverride>$(OverrideTargetRid.Substring(0, $(OverrideTargetRid.IndexOf("-"))))</OSNameOverride>
-
-     <RuntimeArg>--runtime-id $(OverrideTargetRid)</RuntimeArg>
-@@ -28,7 +28,7 @@
-     <BuildCommandArgs Condition="'$(TargetOS)' == 'Linux'">$(BuildCommandArgs) /p:AspNetCoreInstallerRid=linux-$(Platform)</BuildCommandArgs>
+ 
+     <!-- Determine target portable rid based on bootstrap SDK's portable rid -->
+@@ -33,7 +33,7 @@
+     <BuildCommandArgs Condition="'$(TargetOS)' == 'Linux'">$(BuildCommandArgs) /p:AspNetCoreInstallerRid=$(TargetRid)</BuildCommandArgs>
      <!-- core-sdk always wants to build portable on OSX and FreeBSD -->
      <BuildCommandArgs Condition="'$(TargetOS)' == 'FreeBSD'">$(BuildCommandArgs) /p:CoreSetupRid=freebsd-x64 /p:PortableBuild=true</BuildCommandArgs>
 -    <BuildCommandArgs Condition="'$(TargetOS)' == 'OSX'">$(BuildCommandArgs) /p:CoreSetupRid=osx-x64</BuildCommandArgs>
 +    <BuildCommandArgs Condition="'$(TargetOS)' == 'OSX'">$(BuildCommandArgs) /p:CoreSetupRid=osx-$(Platform)</BuildCommandArgs>
      <BuildCommandArgs Condition="'$(TargetOS)' == 'Linux'">$(BuildCommandArgs) /p:CoreSetupRid=$(TargetRid)</BuildCommandArgs>
-
+ 
      <!-- Consume the source-built Core-Setup and toolset. This line must be removed to source-build CLI without source-building Core-Setup first. -->
 diff --git a/src/SourceBuild/tarball/content/repos/runtime.proj b/src/SourceBuild/tarball/content/repos/runtime.proj
-index 59ea1d6fc..14d98fbb5 100644
+index 85d0efa77..4a2f71817 100644
 --- a/src/SourceBuild/tarball/content/repos/runtime.proj
 +++ b/src/SourceBuild/tarball/content/repos/runtime.proj
-@@ -3,7 +3,7 @@
-
-   <PropertyGroup>
+@@ -8,7 +8,7 @@
+     <CleanCommand>$(ProjectDirectory)/clean$(ShellExtension)</CleanCommand>
+ 
      <OverrideTargetRid>$(TargetRid)</OverrideTargetRid>
 -    <OverrideTargetRid Condition="'$(TargetOS)' == 'OSX'">osx-x64</OverrideTargetRid>
 +    <OverrideTargetRid Condition="'$(TargetOS)' == 'OSX'">osx-$(Platform)</OverrideTargetRid>
      <OverrideTargetRid Condition="'$(TargetOS)' == 'FreeBSD'">freebsd-x64</OverrideTargetRid>
      <OverrideTargetRid Condition="'$(TargetOS)' == 'Windows_NT'">win-x64</OverrideTargetRid>
-
+ 
 diff --git a/src/SourceBuild/tarball/content/eng/bootstrap/buildBootstrapPreviouslySB.csproj b/src/SourceBuild/tarball/content/eng/bootstrap/buildBootstrapPreviouslySB.csproj
-index 9a00e2a48..27071417f 100644
+index f8fb96aa2..d3b80fbc9 100644
 --- a/src/SourceBuild/tarball/content/eng/bootstrap/buildBootstrapPreviouslySB.csproj
 +++ b/src/SourceBuild/tarball/content/eng/bootstrap/buildBootstrapPreviouslySB.csproj
-@@ -42,6 +42,17 @@
-     <PackageDownload Include="runtime.linux-arm64.Microsoft.NETCore.ILDAsm" Version="[$(RuntimeLinuxX64MicrosoftNETCoreILDAsmVersion)]" />
-     <PackageDownload Include="runtime.linux-arm64.Microsoft.NETCore.TestHost" Version="[$(RuntimeLinuxX64MicrosoftNETCoreTestHostVersion)]" />
-     <PackageDownload Include="runtime.linux-arm64.runtime.native.System.IO.Ports" Version="[$(RuntimeLinuxX64RuntimeNativeSystemIOPortsVersion)]" />
+@@ -51,6 +51,17 @@
+     <PackageDownload Include="runtime.linux-arm64.Microsoft.NETCore.ILDAsm" Version="[$(MicrosoftNETCoreILDAsmVersion)]" />
+     <PackageDownload Include="runtime.linux-arm64.Microsoft.NETCore.TestHost" Version="[$(MicrosoftNETCoreTestHostVersion)]" />
+     <PackageDownload Include="runtime.linux-arm64.runtime.native.System.IO.Ports" Version="[$(RuntimeNativeSystemIOPortsVersion)]" />
 +    <!-- Packages needed to bootstrap macOS -->
 +    <PackageDownload Include="Microsoft.AspNetCore.App.Runtime.osx-x64" Version="[$(MicrosoftAspNetCoreAppRuntimeLinuxx64Version)]" />
 +    <PackageDownload Include="Microsoft.AspNetCore.App.Runtime.osx-arm64" Version="[$(MicrosoftAspNetCoreAppRuntimeLinuxx64Version)]" />
@@ -220,5 +220,5 @@ index 9a00e2a48..27071417f 100644
 +    <PackageDownload Include="runtime.osx-x64.Microsoft.NETCore.ILDAsm" Version="[$(RuntimeLinuxX64MicrosoftNETCoreILDAsmVersion)]" />
 +    <PackageDownload Include="runtime.osx-arm64.Microsoft.NETCore.ILDAsm" Version="[$(RuntimeLinuxX64MicrosoftNETCoreILDAsmVersion)]" />
    </ItemGroup>
-
+ 
    <Target Name="BuildBoostrapPreviouslySourceBuilt" AfterTargets="Restore">
