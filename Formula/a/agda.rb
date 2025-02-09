@@ -4,7 +4,7 @@ class Agda < Formula
   # agda2hs.cabal specifies BSD-3-Clause but it installs an MIT LICENSE file.
   # Everything else specifies MIT license and installs corresponding file.
   license all_of: ["MIT", "BSD-3-Clause"]
-  revision 1
+  revision 2
 
   stable do
     url "https://github.com/agda/agda/archive/refs/tags/v2.8.0.tar.gz"
@@ -20,6 +20,16 @@ class Agda < Formula
       # apply cleanly.
       # Remove on next version bump
       patch :DATA
+    end
+
+    resource "stdlib-classes" do
+      url "https://github.com/agda/agda-stdlib-classes/archive/refs/tags/v2.3.tar.gz"
+      sha256 "00e59758b932597b4663b6ac7e3e183bfc0a4e9b905c0fb3dc8bb2b6c49cc693"
+    end
+
+    resource "stdlib-meta" do
+      url "https://github.com/agda/agda-stdlib-meta/archive/refs/tags/v2.3.tar.gz"
+      sha256 "9d12d5b4503907115be83e2c2701be29542173384f9a552f0e538e38d9f8e1ba"
     end
 
     resource "cubical" do
@@ -44,6 +54,12 @@ class Agda < Formula
     resource "agda2hs" do
       url "https://github.com/agda/agda2hs/archive/refs/tags/v1.4.tar.gz"
       sha256 "e3f377b18a4545aea2cd9292f21962e896993be4b470f0b0a7865f3129688c6b"
+    end
+
+    # TODO: bump version to v6
+    resource "agda-language-server" do
+      url "https://github.com/agda/agda-language-server.git",
+          revision: "57d45f7e9383464bed52329c2082074350c9208b"
     end
   end
 
@@ -71,6 +87,14 @@ class Agda < Formula
       url "https://github.com/agda/agda-stdlib.git", branch: "master"
     end
 
+    resource "stdlib-classes" do
+      url "https://github.com/agda/agda-stdlib-classes.git", branch: "master"
+    end
+
+    resource "stdlib-meta" do
+      url "https://github.com/agda/agda-stdlib-meta.git", branch: "master"
+    end
+
     resource "cubical" do
       url "https://github.com/agda/cubical.git", branch: "master"
     end
@@ -82,14 +106,20 @@ class Agda < Formula
     resource "agda2hs" do
       url "https://github.com/agda/agda2hs.git", branch: "master"
     end
+
+    resource "agda-language-server" do
+      url "https://github.com/agda/agda-language-server.git", branch: "master"
+    end
   end
 
   depends_on "cabal-install" => :build
   depends_on "emacs" => :build
+  depends_on "pkgconf" => :build
   # TODO: switch to the latest GHC in the next release
   # https://github.com/agda/agda/pull/8303
   depends_on "ghc@9.12"
   depends_on "gmp"
+  depends_on "icu4c@78"
 
   uses_from_macos "libffi"
   uses_from_macos "ncurses"
@@ -100,15 +130,21 @@ class Agda < Formula
 
   def install
     agda2hs_build = buildpath/"agda2hs"
+    als = buildpath/"agda-language-server"
     # use pkgshare for write permissions needed to re-generate .agdai when using different options
     agdaprim = pkgshare/"prim"
     stdlib = pkgshare/"stdlib"
+    classeslib = pkgshare/"stdlib-classes"
+    metalib = pkgshare/"stdlib-meta"
     cubicallib = pkgshare/"cubical"
     categorieslib = pkgshare/"categories"
     agda2hs_lib = pkgshare/"agda2hs"
 
     resource("agda2hs").stage agda2hs_build
+    resource("agda-language-server").stage als
     resource("stdlib").stage stdlib
+    resource("stdlib-classes").stage classeslib
+    resource("stdlib-meta").stage metalib
     resource("cubical").stage cubicallib
     resource("categories").stage categorieslib
 
@@ -117,9 +153,11 @@ class Agda < Formula
     ENV["Agda_datadir"] = agdaprim.to_s
 
     (buildpath/"cabal.project.local").write <<~HASKELL
-      packages: . #{agda2hs_build}
+      packages: . #{agda2hs_build} #{als}
       package Agda
-        flags: +optimise-heavily
+        flags: +optimise-heavily +enable-cluster-counting
+      package agda-language-server
+        flags: +Agda-2-8-0
     HASKELL
 
     cabal_args = std_cabal_v2_args.map { |s| s.sub "=copy", "=symlink" }
@@ -132,14 +170,17 @@ class Agda < Formula
 
     system "cabal", "v2-update"
     system "cabal", "--store-dir=#{libexec}", "v2-install", *exposed_packages, "--lib", *cabal_args
-    system "cabal", "--store-dir=#{libexec}", "v2-install", ".", agda2hs_build, *cabal_args
+    system "cabal", "--store-dir=#{libexec}", "v2-install", ".", agda2hs_build, als, *cabal_args
 
     # Write out the primitive library and data files
     system bin/"agda", "--setup"
     system bin/"agda", "--emacs-mode", "compile"
 
-    # Allow build scripts to find stdlib and just built agda binary
-    Pathname("#{Dir.home}/.config/agda/libraries").write "#{stdlib}/standard-library.agda-lib"
+    # Allow build scripts to find stdlib (with classes) and just built agda binary
+    Pathname("#{Dir.home}/.config/agda/libraries").write <<~AGDALIB
+      #{stdlib}/standard-library.agda-lib
+      #{classeslib}/agda-stdlib-classes.agda-lib
+    AGDALIB
     ENV.prepend_path "PATH", bin
 
     # work around issue related to find command on older macOS
@@ -151,6 +192,14 @@ class Agda < Formula
     system "make", "-C", stdlib, "listings", "AGDA_OPTIONS="
     system "make", "-C", cubicallib, "listings", "AGDA_FLAGS="
     system "make", "-C", categorieslib, "html", "OTHEROPTS="
+
+    # More manually built documentation and interfaces
+    cd classeslib do
+      system "agda", "--html", "standard-library-classes.agda"
+    end
+    cd metalib do
+      system "agda", "--html", "standard-library-meta.agda"
+    end
 
     # Clean up references to Homebrew shims and temporary generated files
     rm_r("#{stdlib}/dist-newstyle")
@@ -186,6 +235,8 @@ class Agda < Formula
     # write out the example libraries and defaults files for users to copy
     (pkgshare/"example-libraries").write <<~TEXT
       #{opt_pkgshare}/stdlib/standard-library.agda-lib
+      #{opt_pkgshare}/stdlib-classes/agda-stdlib-classes.agda-lib
+      #{opt_pkgshare}/stdlib-meta/agda-stdlib-meta.agda-lib
       #{opt_pkgshare}/stdlib/doc/standard-library-doc.agda-lib
       #{opt_pkgshare}/stdlib/tests/standard-library-tests.agda-lib
       #{opt_pkgshare}/cubical/cubical.agda-lib
@@ -195,6 +246,8 @@ class Agda < Formula
     TEXT
     (pkgshare/"example-defaults").write <<~TEXT
       standard-library
+      standard-library-classes
+      standard-library-meta
       cubical
       agda-categories
       agda2hs-base
@@ -244,6 +297,29 @@ class Agda < Formula
       +-assoc : ∀ m n o → (m + n) + o ≡ m + (n + o)
       +-assoc zero    _ _ = refl
       +-assoc (suc m) n o = cong suc (+-assoc m n o)
+    AGDA
+
+    stdlibclassestest = testpath/"StdlibClassesTest.agda"
+    stdlibclassestest.write <<~AGDA
+      module StdlibClassesTest where
+
+      open import Data.Nat using (ℕ)
+      open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+      open import Class.HasAdd
+
+      +-0-annihilate : (m : ℕ) → (0 + m) ≡ m
+      +-0-annihilate _ = refl
+    AGDA
+
+    stdlibmetatest = testpath/"StdlibMetaTest.agda"
+    stdlibmetatest.write <<~AGDA
+      module StdlibMetaTest where
+
+      open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+      open import Reflection.Syntax using (`∅; Pattern)
+
+      `∅-expand : `∅ ≡ Pattern.absurd 0
+      `∅-expand = refl
     AGDA
 
     cubicaltest = testpath/"CubicalTest.agda"
@@ -323,6 +399,12 @@ class Agda < Formula
     # typecheck a module that uses the standard library
     system bin/"agda", stdlibtest
 
+    # typecheck a module that uses the standard-classes library
+    system bin/"agda", stdlibclassestest
+
+    # typecheck a module that uses the standard-meta library
+    system bin/"agda", stdlibmetatest
+
     # typecheck a module that uses the cubical library
     system bin/"agda", cubicaltest
 
@@ -339,6 +421,9 @@ class Agda < Formula
     # translate a simple file via agda2hs
     system bin/"agda2hs", "--out-dir=#{testpath}", agda2hstest
     assert_equal agda2hsexpect, agda2hsout.read
+
+    # check that the installed als binary reports the correct version
+    assert_equal "Agda v#{version} Language Server v6", shell_output("#{bin}/als -V").strip
   end
 end
 __END__
