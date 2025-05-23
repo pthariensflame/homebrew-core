@@ -21,6 +21,16 @@ class Agda < Formula
       end
     end
 
+    resource "stdlib-classes" do
+      url "https://github.com/agda/agda-stdlib-classes/archive/refs/tags/v2.2.tar.gz"
+      sha256 "6c89f32be58dc129a8a3abdef77716e6c27959596929bca78e534afcc9d98721"
+    end
+
+    resource "stdlib-meta" do
+      url "https://github.com/agda/agda-stdlib-meta/archive/refs/tags/v2.2.tar.gz"
+      sha256 "416f9db08888bfbc481a71abb0faf11e79e310cd972ad8d064bf4126728451e5"
+    end
+
     resource "cubical" do
       url "https://github.com/agda/cubical/archive/refs/tags/v0.8.tar.gz"
       sha256 "27b22f2ed981d608f3cbf5d132e9016510c859435b5ce46adc3b76078c136275"
@@ -74,6 +84,14 @@ class Agda < Formula
       url "https://github.com/agda/agda-stdlib.git", branch: "master"
     end
 
+    resource "stdlib-classes" do
+      url "https://github.com/agda/agda-stdlib-classes.git", branch: "master"
+    end
+
+    resource "stdlib-meta" do
+      url "https://github.com/agda/agda-stdlib-meta.git", branch: "master"
+    end
+
     resource "cubical" do
       url "https://github.com/agda/cubical.git", branch: "master"
     end
@@ -108,6 +126,8 @@ class Agda < Formula
     agda2hs = buildpath/"agda2hs"
     als = buildpath/"agda-language-server"
     agdalib = pkgshare # for write permissions needed to re-generate .agdai when using different options
+    classeslib = agdalib/"classes"
+    metalib = agdalib/"meta"
     cubicallib = agdalib/"cubical"
     categorieslib = agdalib/"categories"
 
@@ -117,6 +137,8 @@ class Agda < Formula
     resource("agda2hs").stage agda2hs
     resource("agda-language-server").stage als
     resource("stdlib").stage agdalib
+    resource("stdlib-classes").stage classeslib
+    resource("stdlib-meta").stage metalib
     resource("cubical").stage cubicallib
     resource("categories").stage categorieslib
 
@@ -145,8 +167,12 @@ class Agda < Formula
     system "cabal", "--store-dir=#{libexec}", "v2-install", *exposed_packages, "--lib", *cabal_args
     system "cabal", "--store-dir=#{libexec}", "v2-install", ".", agda2hs, als, *cabal_args
 
-    # Allow build scripts to find stdlib and just built agda binary
-    Pathname("#{Dir.home}/.config/agda/libraries").write "#{agdalib}/standard-library.agda-lib"
+    # Allow build scripts to find stdlibs and just built agda binary
+    Pathname("#{Dir.home}/.config/agda/libraries").write <<~AGDALIB
+      #{agdalib}/standard-library.agda-lib
+      #{classeslib}/agda-stdlib-classes.agda-lib
+      #{metalib}/agda-stdlib-meta.agda-lib
+    AGDALIB
     ENV.prepend_path "PATH", bin
 
     # Generate documentation and interface files. We build without extra options
@@ -157,6 +183,14 @@ class Agda < Formula
     system "make", "-C", cubicallib, "gen-everythings", "AGDA_FLAGS="
     system "make", "-C", cubicallib, "listings", "AGDA_FLAGS="
     system "make", "-C", categorieslib, "html", "OTHEROPTS="
+
+    # More manually built documentation and interfaces
+    cd classeslib do
+      system "agda", "--html", "standard-library-classes.agda"
+    end
+    cd metalib do
+      system "agda", "--html", "standard-library-meta.agda"
+    end
 
     # Clean up references to Homebrew shims and temporary generated files
     rm_r("#{agdalib}/dist-newstyle")
@@ -181,6 +215,8 @@ class Agda < Formula
     # write out the example libraries and defaults files for users to copy
     (agdalib/"example-libraries").write <<~TEXT
       #{opt_pkgshare}/standard-library.agda-lib
+      #{opt_pkgshare}/classes/agda-stdlib-classes.agda-lib
+      #{opt_pkgshare}/meta/agda-stdlib-meta.agda-lib
       #{opt_pkgshare}/doc/standard-library-doc.agda-lib
       #{opt_pkgshare}/tests/standard-library-tests.agda-lib
       #{opt_pkgshare}/cubical/cubical.agda-lib
@@ -189,6 +225,8 @@ class Agda < Formula
     TEXT
     (agdalib/"example-defaults").write <<~TEXT
       standard-library
+      standard-library-classes
+      standard-library-meta
       cubical
       agda-categories
       agda2hs
@@ -234,6 +272,29 @@ class Agda < Formula
       +-assoc : ∀ m n o → (m + n) + o ≡ m + (n + o)
       +-assoc zero    _ _ = refl
       +-assoc (suc m) n o = cong suc (+-assoc m n o)
+    AGDA
+
+    stdlibclassestest = testpath/"StdlibClassesTest.agda"
+    stdlibclassestest.write <<~AGDA
+      module StdlibClassesTest where
+
+      open import Data.Nat using (ℕ)
+      open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+      open import Classes.HasAdd
+
+      +-0-annihilate : (m : ℕ) → (m + 0) ≡ m
+      +-0-annihilate = refl
+    AGDA
+
+    stdlibmetatest = testpath/"StdlibMetaTest.agda"
+    stdlibmetatest.write <<~AGDA
+      module StdlibMetaTest where
+
+      open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+      open import Reflection.Syntax using (`∅; Pattern)
+
+      `∅-expand : `∅ ≡ Pattern.absurd 0
+      `∅-expand = refl
     AGDA
 
     cubicaltest = testpath/"CubicalTest.agda"
@@ -312,6 +373,12 @@ class Agda < Formula
 
     # typecheck a module that uses the standard library
     system bin/"agda", stdlibtest
+
+    # typecheck a module that uses the standard-classes library
+    system bin/"agda", stdlibclassestest
+
+    # typecheck a module that uses the standard-meta library
+    system bin/"agda", stdlibmetatest
 
     # typecheck a module that uses the cubical library
     system bin/"agda", cubicaltest
