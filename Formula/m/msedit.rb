@@ -13,7 +13,10 @@ class Msedit < Formula
   end
 
   depends_on "rust" => :build
-  depends_on :macos # due to test failure on linux
+
+  on_linux do
+    depends_on "pkgconf" => :build
+  end
 
   def install
     ENV["RUSTC_BOOTSTRAP"] = "1"
@@ -21,7 +24,18 @@ class Msedit < Formula
   end
 
   test do
-    # msedit is a TUI application
-    assert_match version.to_s, shell_output("#{bin}/edit --version")
+    output_log = testpath/"output.log"
+    pid = if OS.mac?
+      spawn bin/"edit", "--version", [:out, :err] => output_log.to_s
+    else
+      require "pty"
+      PTY.spawn("#{bin}/edit --version > #{output_log}").last
+    end
+
+    sleep 1
+    assert_match version.to_s, output_log.read
+  ensure
+    Process.kill("TERM", pid)
+    Process.wait(pid)
   end
 end
