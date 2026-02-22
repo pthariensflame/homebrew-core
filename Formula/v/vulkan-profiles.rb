@@ -4,6 +4,7 @@ class VulkanProfiles < Formula
   url "https://github.com/KhronosGroup/Vulkan-Profiles/archive/refs/tags/vulkan-sdk-1.4.341.0.tar.gz"
   sha256 "a20173e02fba707e4d1ef2badd1c0009df8aa142cb402ac48670be12e8c3fda6"
   license "Apache-2.0"
+  revision 1
   head "https://github.com/KhronosGroup/Vulkan-Profiles.git", branch: "main"
 
   livecheck do
@@ -73,6 +74,9 @@ class VulkanProfiles < Formula
       assert_path_exists share/"vulkan/explicit_layer.d/VkLayer_khronos_profiles.json"
     else
       ENV.prepend_path "VK_LAYER_PATH", share/"vulkan/explicit_layer.d"
+
+      # Disable Metal argument buffers for macOS Sonoma on arm
+      ENV["MVK_CONFIG_USE_METAL_ARGUMENT_BUFFERS"] = "0" if Hardware::CPU.arm? && OS.mac? && MacOS.version == :sonoma
 
       actual = shell_output("vulkaninfo")
       %w[VK_EXT_layer_settings VK_EXT_tooling_info].each do |expected|
