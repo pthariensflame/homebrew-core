@@ -1,8 +1,8 @@
 class KubernetesMcpServer < Formula
   desc "MCP server for Kubernetes"
   homepage "https://github.com/containers/kubernetes-mcp-server"
-  url "https://github.com/containers/kubernetes-mcp-server/archive/refs/tags/v0.0.57.tar.gz"
-  sha256 "e08698ba6279efe51ea0d17d830c7706efacfecf5581db62951e8159669bc0f5"
+  url "https://github.com/containers/kubernetes-mcp-server/archive/refs/tags/v0.0.58.tar.gz"
+  sha256 "aadafd17a8a9818cc07454ad3de8ce3e4ead80696d12f384ef4a63e3f48e69b0"
   license "Apache-2.0"
   head "https://github.com/containers/kubernetes-mcp-server.git", branch: "main"
 
@@ -16,6 +16,13 @@ class KubernetesMcpServer < Formula
   end
 
   depends_on "go" => :build
+
+  # Fix for runtime SIGSEGV during MCP initialize/tools flow, remove in next release
+  # PR ref: https://github.com/containers/kubernetes-mcp-server/pull/844
+  patch do
+    url "https://github.com/containers/kubernetes-mcp-server/commit/1adbaecaa8b2b894190727afff17db7c92b68a9f.patch?full_index=1"
+    sha256 "697cbc18ba04632918d4e1b958db6c6406c0ccd366ca137d04db9165aa4cda8d"
+  end
 
   def install
     ldflags = %W[
