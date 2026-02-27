@@ -1,8 +1,8 @@
 class FlowCli < Formula
   desc "Command-line interface that provides utilities for building Flow applications"
   homepage "https://onflow.org"
-  url "https://github.com/onflow/flow-cli/archive/refs/tags/v2.14.2.tar.gz"
-  sha256 "cefaf65d436f98062eca230aa510541acc34383716e969d1d802b5a798d7cd7f"
+  url "https://github.com/onflow/flow-cli/archive/refs/tags/v2.14.3.tar.gz"
+  sha256 "fcfdc4d62d907278e040e43609f5a37fdce0c2fddb67d03ec6b2a8f9c365f072"
   license "Apache-2.0"
   head "https://github.com/onflow/flow-cli.git", branch: "master"
 
@@ -20,13 +20,19 @@ class FlowCli < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "cff7c6f230d2fb312d9d8cc9f5e4b45b216529cb1d9be73049ad8632374a5079"
   end
 
-  depends_on "go" => :build
+  depends_on "go@1.25" => :build
 
   conflicts_with "flow", because: "both install `flow` binaries"
 
   def install
-    system "make", "cmd/flow/flow", "VERSION=v#{version}"
-    bin.install "cmd/flow/flow"
+    ENV["CGO_ENABLED"] = "1" if OS.linux? && Hardware::CPU.arm?
+
+    ldflags = %W[
+      -s -w
+      -X github.com/onflow/flow-cli/build.semver=v#{version}
+      -X github.com/onflow/flow-cli/build.commit=homebrew
+    ]
+    system "go", "build", *std_go_args(ldflags:, output: bin/"flow"), "./cmd/flow"
 
     generate_completions_from_executable(bin/"flow", shell_parameter_format: :cobra)
   end
