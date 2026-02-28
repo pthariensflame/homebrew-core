@@ -11,12 +11,12 @@ class Aider < Formula
   no_autobump! because: "has non-PyPI resources"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "25c35133f612c7c475435e10af1242bb6e21074c75adadbd453853b0f35c4a12"
-    sha256 cellar: :any,                 arm64_sequoia: "3b7f7fa664feccc89836f638e225010108e248a33b95da8c27f3eebee0158d49"
-    sha256 cellar: :any,                 arm64_sonoma:  "df2f6a5cb42ce0289569880bd9ba4f47efbb2a7756f227f659a91b9f700a4c5e"
-    sha256 cellar: :any,                 sonoma:        "906d63ba02fed7fb5eb5d1a3856897721db2d663a0fbc6e36aef108118f8d1bd"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "454401bae92a01013eb4e6a03f798c49ff1695fb10af2386cbe502f9a7868081"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a5ceb9187899d63fac82a7975cb6cb2f0b0f1ce69f4151bd853290db5d3c6c42"
+    sha256 cellar: :any,                 arm64_tahoe:   "7a247897eb06b35bdc2cc6f3a225a9c32f8c1448e9654192c0d30f2c6b56c00b"
+    sha256 cellar: :any,                 arm64_sequoia: "72acfa80c059d3e96dc59087eb68c07450b5b745d1b7f8e3e665044e7d1a9b18"
+    sha256 cellar: :any,                 arm64_sonoma:  "f96a32e15fc8adcfefce10018669dd612999f64f0626d721d71ddda25d880e0f"
+    sha256 cellar: :any,                 sonoma:        "9c30c34a1fb1918b5e0c03ee818c9b3e9740fdd1ed4a2c53f4147507a9b6cca2"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "63b7eb2133d906cf3360f1afde95ab784323f92049f879f494ceaf94f0b7955c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ccaf4e2995bd7295ff7c10d27a929e240f0edbeb2d3376a1ced69047a4359a7e"
   end
 
   depends_on "ninja" => :build
