@@ -1,8 +1,8 @@
 class Devcockpit < Formula
   desc "TUI system monitor for Apple Silicon"
   homepage "https://devcockpit.app/"
-  url "https://github.com/caioricciuti/dev-cockpit/archive/refs/tags/v1.0.8.tar.gz"
-  sha256 "a1ce6d16d46da379d88ca579f24d9d16c542b047c6dd3005637c2d45cf7c49e7"
+  url "https://github.com/caioricciuti/dev-cockpit/archive/refs/tags/v1.0.9.tar.gz"
+  sha256 "3709ae1ef05d5581756a15179aee6af8a4f3ec9ba72ce96dd39ab059493223b4"
   license "GPL-3.0-only"
   head "https://github.com/caioricciuti/dev-cockpit.git", branch: "main"
 
