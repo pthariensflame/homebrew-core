@@ -17,13 +17,12 @@ class Swift < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any, arm64_tahoe:   "c9daabdf3c5011c41c359b674bb472e11479d762d42cb9dc94b71105b6d08b21"
-    sha256 cellar: :any, arm64_sequoia: "2a41a8632685ccfcf13565099d9a3cd27ac5c617895dd3d847ff1d42048e68d6"
-    sha256 cellar: :any, arm64_sonoma:  "bdaf071126459a481a756bb1478403bd65c484d2b03a22d9f4ac642688dc6ab0"
-    sha256 cellar: :any, sonoma:        "ee9a9809ae1b300bf4bd4bb3c41fc35473ba999c3cc21c94556aab19235ebe4c"
-    sha256               arm64_linux:   "3119352a7b2d18035b32f40a7810bff518ec9ef9882666b9a59002bbbe4f6e17"
-    sha256               x86_64_linux:  "b01eb99c65407b2a2787124a0695682d8dfd7cee160920cfa89065dedbed5fa4"
+    sha256 cellar: :any, arm64_tahoe:   "abb0199ae7fcbf1956169990b9c68574ecc0e718eec2bcc1f3e1d96ef79d4c72"
+    sha256 cellar: :any, arm64_sequoia: "c1119297f654729734dd87544c0f8d82331e9783216401716450e4587d0fe0d5"
+    sha256 cellar: :any, arm64_sonoma:  "a27e1aac7500addefb3e377f8c593f72d185bf93a8b8ee4ae9a1a359011ef641"
+    sha256 cellar: :any, sonoma:        "021321c0558cfc62da763bedce17de7c159e4ce92ce2934009d2ae989c97fbe5"
+    sha256               arm64_linux:   "6e90d858015d26989c78f9648562b070fe5d7ed52448297678f03850190ee67f"
+    sha256               x86_64_linux:  "d64df7c399b6f34107fd08b116555bbedd66e3f99074888fc4d87ef1feefb34e"
   end
 
   keg_only :provided_by_macos
