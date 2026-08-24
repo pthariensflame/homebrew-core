@@ -1,8 +1,8 @@
 class VitePlus < Formula
   desc "Unified toolchain and entry point for web development"
   homepage "https://viteplus.dev"
-  url "https://github.com/voidzero-dev/vite-plus/archive/refs/tags/v0.2.8.tar.gz"
-  sha256 "c07ae8f828039fae32b791abcfc8f1d1b769024a2ae5c04bdc2946e8318615f4"
+  url "https://github.com/voidzero-dev/vite-plus/archive/refs/tags/v0.3.1.tar.gz"
+  sha256 "0cc878005ec54ed43ed40332144afb091efeb2c4dfacfacca23cc2f51b3b5946"
   license "MIT"
   head "https://github.com/voidzero-dev/vite-plus.git", branch: "main"
 
@@ -23,8 +23,8 @@ class VitePlus < Formula
 
   resource "rolldown" do
     url "https://github.com/rolldown/rolldown.git",
-        revision: "872b98ac7476eb7d5892a2913e4ba010d124c6ac"
-    version "872b98ac7476eb7d5892a2913e4ba010d124c6ac"
+        revision: "26b4c6e56c5553d72a910d0f73d60fa331c0ed88"
+    version "26b4c6e56c5553d72a910d0f73d60fa331c0ed88"
 
     livecheck do
       url "https://raw.githubusercontent.com/voidzero-dev/vite-plus/refs/tags/v#{LATEST_VERSION}/packages/tools/.upstream-versions.json"
@@ -36,8 +36,8 @@ class VitePlus < Formula
 
   resource "vite" do
     url "https://github.com/vitejs/vite.git",
-        revision: "fa79f9ab699f9a22a6f9b50f3d247be6b51f684d"
-    version "fa79f9ab699f9a22a6f9b50f3d247be6b51f684d"
+        revision: "de1111ab0be00879b404e7ed3b2a80e264edddc1"
+    version "de1111ab0be00879b404e7ed3b2a80e264edddc1"
 
     livecheck do
       url "https://raw.githubusercontent.com/voidzero-dev/vite-plus/refs/tags/v#{LATEST_VERSION}/packages/tools/.upstream-versions.json"
@@ -51,16 +51,28 @@ class VitePlus < Formula
     resource("rolldown").stage buildpath/"rolldown"
     resource("vite").stage buildpath/"vite"
 
-    ENV["NPM_CONFIG_MANAGE_PACKAGE_MANAGER_VERSIONS"] = "false"
+    # Build with Homebrew pnpm. The staged resources pin their own versions too
+    %w[package.json rolldown/package.json vite/package.json].each do |file|
+      package_json = buildpath/file
+      package_json.atomic_write(JSON.pretty_generate(JSON.parse(package_json.read).except("packageManager")))
+    end
+
+    # Vite patches only build-time dependencies, which the production deploy below omits
+    (buildpath/"pnpm-workspace.yaml").append_lines "allowUnusedPatches: true"
 
     system "just", "build"
-    system "cargo", "install", *std_cargo_args(path: "crates/vite_global_cli")
+    system "cargo", "install", *std_cargo_args(path: "crates/vp_global_cli")
 
     system "pnpm", "--filter=vite-plus", "deploy", "--prod", "--legacy", "--no-optional",
            prefix/"node_modules/vite-plus"
     node_modules = prefix/"node_modules/vite-plus/node_modules"
-    rm_r node_modules.glob(".pnpm/*/node_modules/*/prebuilds/{darwin,ios}-x64*")
-    rm_r node_modules.glob(".pnpm/fsevents@*/node_modules/fsevents")
+    # Remove incompatible pre-built `bare-*` binaries. Recurse as `deploy --legacy` writes
+    # both the legacy `<name>@<version>` and the current `@/<name>/<version>/<hash>` layouts
+    os = OS.kernel_name.downcase
+    arch = Hardware::CPU.intel? ? "x64" : Hardware::CPU.arch.to_s
+    node_modules.glob(".pnpm/**/prebuilds/*")
+                .each { |dir| rm_r(dir) if dir.basename.to_s != "#{os}-#{arch}" }
+    rm_r node_modules.glob(".pnpm/**/node_modules/fsevents")
 
     # Symlink vp to vpr and vpx. These are detected at runtime by argv[0]
     bin.install_symlink bin/"vp" => "vpr"
