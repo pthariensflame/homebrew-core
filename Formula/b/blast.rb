@@ -5,7 +5,7 @@ class Blast < Formula
   version "2.17.0"
   sha256 "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147"
   license :public_domain
-  revision 1
+  revision 2
 
   livecheck do
     url "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/VERSION"
@@ -40,6 +40,17 @@ class Blast < Formula
 
   conflicts_with "proj", because: "both install a `libproj.a` library"
 
+  # Apply Debian patch to remove version check on the compile-time TLS library
+  # patch version. This avoids unnecessary rebuilds across ABI-compatible updates.
+  # The alternative is to use the bundled copy which isn't ideal for a TLS library.
+  patch do
+    url "https://salsa.debian.org/med-team/ncbi-blastplus/-/raw/81bb56c0d709fd571c9b99958b6651fed5a13dcd/debian/patches/suppress_tls_version_checks"
+    sha256 "35f3e916762129a2b48d78e1c5f15e6108fe7e5525e3e0c605c5ca7882000f6e"
+    type :unofficial
+  end
+
+  allow_network_access! :test
+
   def install
     cd "c++" do
       # Remove bundled libraries to make sure the brew/system libraries are used
@@ -48,6 +59,7 @@ class Blast < Formula
         rm_r("src/util/#{lib_subdir}")
       end
       rm_r(Dir["include/util/regexp/*"] - ["include/util/regexp/ctre"])
+      rm_r("src/connect/mbedtls")
 
       # Remove Cloudflare zlib on arm64 linux as it requires a minimum of armv8-a+crc
       # TODO: re-enable if we increase our minimum march to require crc
@@ -73,16 +85,9 @@ class Blast < Formula
         --without-boost
         --without-internal
       ]
-
-      if OS.mac?
-        # Allow SSE4.2 on some platforms. The --with-bin-release sets --without-sse42
-        args << "--with-sse42" if Hardware::CPU.intel? && MacOS.version.requires_sse42?
-        args += ["OPENMP_FLAGS=-Xpreprocessor -fopenmp",
-                 "LDFLAGS=-lomp"]
-      end
+      args += ["OPENMP_FLAGS=-Xpreprocessor -fopenmp", "LDFLAGS=-lomp"] if OS.mac?
 
       system "./configure", *args
-
       # Fix the error: install: ReleaseMT/lib/*.*: No such file or directory
       system "make"
       system "make", "install"
