@@ -1,8 +1,8 @@
 class Broot < Formula
   desc "New way to see and navigate directory trees"
   homepage "https://dystroy.org/broot/"
-  url "https://github.com/Canop/broot/archive/refs/tags/v1.59.0.tar.gz"
-  sha256 "61cb29922ef3953bae7f696b9f33fef51d85b5a4d85075c3612fcc6824663c37"
+  url "https://github.com/Canop/broot/archive/refs/tags/v1.60.0.tar.gz"
+  sha256 "94b3b6f3aaa59dbd7824175f63b298e93e03cc157b02662e83427a61e14b37aa"
   license "MIT"
   head "https://github.com/Canop/broot.git", branch: "main"
 
@@ -52,18 +52,20 @@ class Broot < Formula
     assert_match "lets you explore file hierarchies with a tree-like view", output
     assert_match version.to_s, shell_output("#{bin}/broot --version")
 
+    (testpath/"conf.hjson").write "enable_kitty_keyboard: false\n"
+    (testpath/"test.txt").write "Homebrew\n"
+
     require "pty"
     require "io/console"
-    PTY.spawn(bin/"broot", "-c", ":print_tree", "--color", "no", "--outcmd", testpath/"output.txt") do |r, w, pid|
+    PTY.spawn(bin/"broot", "--conf", testpath/"conf.hjson", "-c", ":print_tree", "--color", "no") do |r, _w, pid|
       r.winsize = [20, 80] # broot dependency terminal requires width > 2
-      w.write "n\r\n"
       output = ""
       begin
         r.each { |line| output += line }
       rescue Errno::EIO
         # GNU/Linux raises EIO when read is done on closed pty
       end
-      assert_match "New Configuration files written in", output
+      assert_match "test.txt", output
       assert_predicate Process::Status.wait(pid), :success?
     end
   end
