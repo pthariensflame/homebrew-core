@@ -24,21 +24,19 @@ class YtDlp < Formula
   end
 
   depends_on "certifi"
+  depends_on "cffi"
   depends_on "deno"
+  depends_on "pycparser"
   depends_on "python@3.14"
+
   uses_from_macos "libffi"
 
   pypi_packages package_name:     "yt-dlp[default,curl-cffi]",
-                exclude_packages: "certifi"
+                exclude_packages: %w[certifi cffi pycparser]
 
   resource "brotli" do
     url "https://files.pythonhosted.org/packages/f7/16/c92ca344d646e71a43b8bb353f0a6490d7f6e06210f8554c8f874e454285/brotli-1.2.0.tar.gz"
     sha256 "e310f77e41941c13340a95976fe66a8a95b01e783d430eeaf7a2f87e0a57dd0a"
-  end
-
-  resource "cffi" do
-    url "https://files.pythonhosted.org/packages/9e/ef/008a1939e372c06329a3fce4279c02f328488f3526744906eeec3da7ad5f/cffi-2.1.1.tar.gz"
-    sha256 "dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be"
   end
 
   resource "charset-normalizer" do
@@ -59,11 +57,6 @@ class YtDlp < Formula
   resource "mutagen" do
     url "https://files.pythonhosted.org/packages/df/70/1675da133ea92227da41bf5b24e1c66be597ff736a1533ade41da986852f/mutagen-1.48.1.tar.gz"
     sha256 "8f95637ab9f6f305cec6bd1294e197debe207998e3e068596563c74f86b0a173"
-  end
-
-  resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/1b/7d/92392ff7815c21062bea51aa7b87d45576f649f16458d78b7cf94b9ab2e6/pycparser-3.0.tar.gz"
-    sha256 "600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29"
   end
 
   resource "pycryptodomex" do
