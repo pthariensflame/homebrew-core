@@ -1,8 +1,8 @@
 class PodmanTui < Formula
   desc "Podman Terminal User Interface"
   homepage "https://github.com/containers/podman-tui"
-  url "https://github.com/containers/podman-tui/archive/refs/tags/v1.11.3.tar.gz"
-  sha256 "55c7dd30cf106995361bfeb55d1f74f20d8a603a7cbbd3a03a4a8cdcc35aa6da"
+  url "https://github.com/containers/podman-tui/archive/refs/tags/v2.0.0.tar.gz"
+  sha256 "32c8ffced718cda2d5b4bcedddb71299aaa035f035de6886100ab0f6469ca3dd"
   license "Apache-2.0"
   head "https://github.com/containers/podman-tui.git", branch: "main"
 
@@ -35,7 +35,7 @@ class PodmanTui < Formula
       begin
         output = r.read
         assert_match "Connection:", output
-        assert_match "SYSTEM CONNECTIONS[1]", output
+        assert_match "SYSTEM CONNECTIONS[0]", output
       rescue Errno::EIO
         # GNU/Linux raises EIO when read is done on closed pty
       end
