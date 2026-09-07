@@ -1,8 +1,8 @@
 class AliyunCli < Formula
   desc "Universal Command-Line Interface for Alibaba Cloud"
   homepage "https://github.com/aliyun/aliyun-cli"
-  url "https://github.com/aliyun/aliyun-cli/archive/refs/tags/v3.4.11.tar.gz"
-  sha256 "641c6502a8fed03b2afe89375dc88cadd104baf5f87a7d6866e778a6cf675c32"
+  url "https://github.com/aliyun/aliyun-cli/archive/refs/tags/v3.5.0.tar.gz"
+  sha256 "1593fc4ab238323724bc1a34d7e393f85dc7a7f2e0a900a6e5a48efe3b345179"
   license "Apache-2.0"
   head "https://github.com/aliyun/aliyun-cli.git", branch: "master"
 
@@ -23,9 +23,9 @@ class AliyunCli < Formula
   depends_on "go" => :build
 
   resource "aliyun-openapi-meta" do
-    url "https://github.com/aliyun/aliyun-openapi-meta/archive/2563691c22229a0b493606e11166b95896707095.tar.gz"
-    version "2563691c22229a0b493606e11166b95896707095"
-    sha256 "7ba54333e467ddf5b25cc93ef883742b1817b44c48568bfee699450544537e31"
+    url "https://github.com/aliyun/aliyun-openapi-meta/archive/00db11354cc523f310b1bd1bd73bdecc478e8ad2.tar.gz"
+    version "00db11354cc523f310b1bd1bd73bdecc478e8ad2"
+    sha256 "cbd5c1252b351130a1767e98dfb53ce40bd0cfa824301b256e220e5348ae20ea"
 
     livecheck do
       url "https://api.github.com/repos/aliyun/aliyun-cli/contents/aliyun-openapi-meta?ref=v#{LATEST_VERSION}"
@@ -37,9 +37,10 @@ class AliyunCli < Formula
 
   def install
     (buildpath/"aliyun-openapi-meta").install resource("aliyun-openapi-meta")
+    system "go", "generate", "./bundledmeta"
 
     ldflags = "-X github.com/aliyun/aliyun-cli/v#{version.major}/cli.Version=#{version}"
-    system "go", "build", *std_go_args(output: bin/"aliyun", ldflags:), "main/main.go"
+    system "go", "build", *std_go_args(output: bin/"aliyun", ldflags:), "-tags", "aliyun_cli_packed_meta", "./main"
   end
 
   test do
@@ -48,9 +49,12 @@ class AliyunCli < Formula
 
     help_out = shell_output("#{bin}/aliyun --help")
     assert_match "Alibaba Cloud Command Line Interface Version #{version}", help_out
-    assert_match "", help_out
-    assert_match "Usage:", help_out
-    assert_match "aliyun <product> <operation> [--parameter1 value1 --parameter2 value2 ...]", help_out
+    assert_match "Quick Start:", help_out
+    assert_match "aliyun ecs DescribeRegions", help_out
+
+    dry_run_out = shell_output("#{bin}/aliyun ecs DescribeRegions --cli-dry-run --region cn-hangzhou")
+    assert_match "Endpoint: ecs-cn-hangzhou.aliyuncs.com", dry_run_out
+    assert_match "Action:   DescribeRegions", dry_run_out
 
     oss_out = shell_output("#{bin}/aliyun oss")
     assert_match "Object Storage Service", oss_out
