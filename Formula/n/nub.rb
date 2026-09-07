@@ -1,8 +1,8 @@
 class Nub < Formula
   desc "Fast TypeScript runtime and package manager that augments Node"
   homepage "https://nubjs.com"
-  url "https://github.com/nubjs/nub/archive/refs/tags/v0.8.3.tar.gz"
-  sha256 "013a89b1877079b30e180d0a3e4c070d31d04c2c847a8c37c393adb4fec3c6b3"
+  url "https://github.com/nubjs/nub/archive/refs/tags/v0.9.0.tar.gz"
+  sha256 "0334f0ca04e2f39960e233f9283feabbad71703bf74dccae54ab3f2a77a08e5e"
   license "MIT"
 
   livecheck do
