@@ -6,6 +6,14 @@ class TreallaProlog < Formula
   license "MIT"
   head "https://github.com/trealla-prolog/trealla-prolog.git", branch: "main"
 
+  bottle do
+    sha256 arm64_tahoe:   "efda1d92abc77fcc2f5fda2af90345ef9f2a30b7c9f72d7b961691f182d3982c"
+    sha256 arm64_sequoia: "1f8ca3264170d95ef64a29bdc8c416282e0c6c8e10f73d766c6a5c25381d25e0"
+    sha256 arm64_sonoma:  "3c3fc7aeb441188e9b3e32e9b548aefbc2c0f55ccf389e6f080118ecceeb4508"
+    sha256 arm64_linux:   "7a47e64a1d446912802d8850c163c104e0201b72d4ab82b02d2041fd4ac3cdfe"
+    sha256 x86_64_linux:  "21ee806d633a42329f7e690e34f418c9c91d29112904e8b2d564bcbfb5a90f57"
+  end
+
   depends_on "openssl@4"
 
   uses_from_macos "libedit"
