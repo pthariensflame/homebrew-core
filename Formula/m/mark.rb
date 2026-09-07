@@ -1,8 +1,8 @@
 class Mark < Formula
   desc "Sync your markdown files with Confluence pages"
   homepage "https://samizdat.dev"
-  url "https://github.com/kovetskiy/mark/archive/refs/tags/v16.17.2.tar.gz"
-  sha256 "7937d0731d7989e8c55e43cb4def65f4984cdae019aefe7bb8830923a898827d"
+  url "https://github.com/kovetskiy/mark/archive/refs/tags/v16.18.0.tar.gz"
+  sha256 "15d7b63844739b7a9e743f03a66aa211f4d02c7fda3011c38ea193ec2412fdf0"
   license "Apache-2.0"
   head "https://github.com/kovetskiy/mark.git", branch: "master"
 
@@ -15,6 +15,12 @@ class Mark < Formula
   end
 
   depends_on "go" => :build
+
+  deny_network_access!
+
+  def fetch
+    system "go", "mod", "download"
+  end
 
   def install
     system "go", "build", *std_go_args(ldflags: :goreleaser), "./cmd/mark"
@@ -29,6 +35,6 @@ class Mark < Formula
 
     touch testpath/"mark.toml"
     output = shell_output("#{bin}/mark --config mark.toml sync 2>&1", 1)
-    assert_match "confluence password should be specified", output
+    assert_match "confluence base URL should be specified", output
   end
 end
