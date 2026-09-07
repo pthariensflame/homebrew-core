@@ -140,7 +140,6 @@
   "python-certifi": "certifi",
   "python-chardet": "chardet",
   "python-cryptography": "cryptography",
-  "qt5": "qt@5",
   "ra-multiplex": "lspmux",
   "racket": "minimal-racket",
   "rebar@3": "rebar3",
