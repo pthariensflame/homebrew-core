@@ -7,12 +7,11 @@ class Pioneer < Formula
   head "https://github.com/pioneerspacesim/pioneer.git", branch: "master"
 
   bottle do
-    sha256                               arm64_tahoe:   "7ae2eb5796a4910a15bd829f3fddf5ca9cd053f5728c3efbc2685642ed13b5b6"
-    sha256                               arm64_sequoia: "2f97087249fb0ccdcc983976fb150d993c7294d4f9b8f2e671c3cfa60c6d8f5c"
-    sha256                               arm64_sonoma:  "eed62b8b5d57fade0b62887098331c09e8d04a2b37ada2ea6dfef6c499acbac4"
-    sha256                               sonoma:        "7f1425f262ba4e222d0e28249b560a910011bb6ee3c2ae0c4ccb799dd063328f"
-    sha256                               arm64_linux:   "23bf36101661131d354b456e8258be52a359a53c3d4ca80941d7719bb2e00102"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "70ae3174bf568ea87f9a65dfb766b246e66ff09529bc30724d79c34760c91ee1"
+    sha256               arm64_tahoe:   "666658cae770ddce6be9ece3bfab9b81b8ac10d7313c2aa0264a985a72464d88"
+    sha256               arm64_sequoia: "71f8e39d812de5956684d8bf6bab1e4aab294d1aef291ee25ec9c8251917421a"
+    sha256               arm64_sonoma:  "64c3f414b2e1f8e808483dff8e5595b7f8d359f05e5cf5de10e157bdf19379b2"
+    sha256               arm64_linux:   "476d07b36090731867426a35d88a9b0c45bf7499faccfa8e66fa1a082fd5c620"
+    sha256 cellar: :any, x86_64_linux:  "3ebe21380f7ca7181dafa32b25e8f4d889d6bd361acafb3ab1ce0fc679265d09"
   end
 
   depends_on "cmake" => :build
