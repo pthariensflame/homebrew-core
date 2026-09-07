@@ -1,8 +1,8 @@
 class Netatalk < Formula
   desc "File server for Macs, compliant with Apple Filing Protocol (AFP)"
   homepage "https://netatalk.io"
-  url "https://github.com/Netatalk/netatalk/releases/download/netatalk-4-5-1/netatalk-4.5.1.tar.xz"
-  sha256 "f091de10b0c40996ebf7d6502cf947cfd87dfe1a7e62f9d96013225573938524"
+  url "https://github.com/Netatalk/netatalk/releases/download/netatalk-4-5-2/netatalk-4.5.2.tar.xz"
+  sha256 "2cdfd5420e8e91c85c82dda66a92dcdd5974eef076feb169b279c600133f38b2"
   license all_of: [
     "GPL-2.0-or-later",
 
