@@ -6,11 +6,11 @@ class Pake < Formula
   license "GPL-3.0-or-later"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "af615ccd80936826ac8059afed08cc90d0df6d5e2f5a3a5b77106e59a5d7f316"
-    sha256 cellar: :any, arm64_sequoia: "6a288820a8573f9d3321ce11dbf5adf16f648232d80462dd3d0d6e450b47b4b4"
-    sha256 cellar: :any, arm64_sonoma:  "eb0410d8da9979c3626069febe548086b5664c72d3c88b76c5298665f5674d3e"
-    sha256 cellar: :any, arm64_linux:   "c32af05ee4e42b5fec0cdd36404708dc34416d910def8bd3d5acf849b249fbe9"
-    sha256 cellar: :any, x86_64_linux:  "87cb9d636812c65a94daae9f7520ff6f0863d15cad999cb979ef058911bf4671"
+    sha256 cellar: :any, arm64_tahoe:   "494b0c6cf1c266436c073b14c06b9bedf991c927c0392fc8665c5b1f6b317dc7"
+    sha256 cellar: :any, arm64_sequoia: "c30f23f5587d70b0279ba8ac553619398567997f4208ffa380c0d8ef6188683b"
+    sha256 cellar: :any, arm64_sonoma:  "bf35c403a99287be70d91324af77f7093f3d04cef0a590d254baa56acd861b6b"
+    sha256 cellar: :any, arm64_linux:   "4ff3b1833111ebe78eecd90a270e1fb36c3fa02aeed282be0ac38c6047a8413d"
+    sha256 cellar: :any, x86_64_linux:  "46690ff3c3e296130f977b54d290247e4cbd2802a812d499ec25d259139529c7"
   end
 
   depends_on "pkgconf" => :build
