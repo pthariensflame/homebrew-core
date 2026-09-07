@@ -12,11 +12,11 @@ class Flowrs < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "5188dc199c9a1b3ca62c574c564b2a836718519eb48ff8f6543d24dd3d996334"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7c1adf82a7099219477e2304b1d5c7cdea6d741fa319c171930a6c624a8134f9"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "bb6a8dc78d5cd684497aecff39a5d754cb7d89fae11a3d36b4467bfedabf0659"
-    sha256 cellar: :any,                 arm64_linux:   "0a62e55b215ebb88b3950bd5d40097af0b1a1f3b04110e0ad95e56c6bc66ad85"
-    sha256 cellar: :any,                 x86_64_linux:  "f211674ddd3524f94c16bdf24dfafca1a49f0e3b1373322276a5873d5dd5a44e"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "335abe357cd34858e60a885e5c26137b75dc2b1f5fab9a5a21aeb52bca7eb969"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "71488a39620eab3c463aedfc79280f9782d7891af948cc61dfb978598bdc7661"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "08777659b242ac2ef11115c33ef459bd93c890e45ee9b91582137b85d23fe7be"
+    sha256 cellar: :any,                 arm64_linux:   "7a1ae7f22c3dd80f8dc42260752a66a3de4d8808abd04ed8294330a7f8e21d50"
+    sha256 cellar: :any,                 x86_64_linux:  "858ca7aec05156b9b6545326b42c7b49f77a3e5e7b304084bd9865fb27635481"
   end
 
   depends_on "pkgconf" => :build
