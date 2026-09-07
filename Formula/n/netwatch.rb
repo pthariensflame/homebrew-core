@@ -1,8 +1,8 @@
 class Netwatch < Formula
   desc "Cross-platform realtime network diagnostics TUI"
   homepage "https://www.netwatchlabs.com/labs/netwatch"
-  url "https://github.com/matthart1983/netwatch/archive/refs/tags/v0.30.0.tar.gz"
-  sha256 "95dfbbf1208806d383bf8309ff40ec29fc55e1081ecd7c41ee8f110c8aa32227"
+  url "https://github.com/matthart1983/netwatch/archive/refs/tags/v0.30.1.tar.gz"
+  sha256 "ec4a4b9a9db393792d8757471dd7ffcaf0e0f66efd9f3e52c0297086a4c38e48"
   license "MIT"
 
   bottle do
