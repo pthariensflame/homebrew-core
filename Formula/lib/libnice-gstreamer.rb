@@ -10,12 +10,11 @@ class LibniceGstreamer < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "8c35c126361bae664d0cedd53e2df6115a1303cf2566b9a28a3486b2159731f5"
-    sha256 cellar: :any, arm64_sequoia: "0e77dffa693e48f2ba455657fa744c595799b86655b695524c41bd3b983a6c5d"
-    sha256 cellar: :any, arm64_sonoma:  "f6ab16d942ef72dccb8278e2b8da25381edd0a6e394020b87d50e1f6a6d7a0b9"
-    sha256 cellar: :any, sonoma:        "f78f64870d3d5ec10b8cf25af5ac7ae92c3106b577f1bf13d9cab0dccbe9fbb7"
-    sha256               arm64_linux:   "ed30b7a595d0bf0f5798158f4f142af5c71ae72d0e3fe9a4c815beca104df736"
-    sha256               x86_64_linux:  "2570d646e3fff87a4227109021740629384f63d27278ae1ec5060278c6169148"
+    sha256 cellar: :any, arm64_tahoe:   "4534e775b787529c00fc1f4954c4cb2cd0162e90bd0c687302580d65f5d3ece5"
+    sha256 cellar: :any, arm64_sequoia: "3244ebe9c99c296fff087230259455ca9ec34a70ccf51edf2f9300eaa5290012"
+    sha256 cellar: :any, arm64_sonoma:  "670e31e436f75b1c09fd9683adb166309cf786a868d6e5f702e85052c015fc44"
+    sha256 cellar: :any, arm64_linux:   "56099682e9761c9d01a47e32a4da76fd3cfd1a88a695e8fb6cbe6f25bb4ba7f2"
+    sha256 cellar: :any, x86_64_linux:  "7b5a4536f58eb1f357d29702c92fe935ebd4428ec0f4d41ec66f05bb8e50713f"
   end
 
   depends_on "meson" => :build
