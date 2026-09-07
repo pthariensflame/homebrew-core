@@ -1,20 +1,26 @@
 class Mark < Formula
   desc "Sync your markdown files with Confluence pages"
   homepage "https://samizdat.dev"
-  url "https://github.com/kovetskiy/mark/archive/refs/tags/v16.17.2.tar.gz"
-  sha256 "7937d0731d7989e8c55e43cb4def65f4984cdae019aefe7bb8830923a898827d"
+  url "https://github.com/kovetskiy/mark/archive/refs/tags/v16.18.0.tar.gz"
+  sha256 "15d7b63844739b7a9e743f03a66aa211f4d02c7fda3011c38ea193ec2412fdf0"
   license "Apache-2.0"
   head "https://github.com/kovetskiy/mark.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e9b318547e0851cbad69be8d7fb27fbd5f6dfb2771f823a5a7d1eda425e016c8"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e9b318547e0851cbad69be8d7fb27fbd5f6dfb2771f823a5a7d1eda425e016c8"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e9b318547e0851cbad69be8d7fb27fbd5f6dfb2771f823a5a7d1eda425e016c8"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "00d272ce9f0a0119f7ba04a1e575093619534719472a1e17e6b4718c6c5f790b"
-    sha256 cellar: :any,                 x86_64_linux:  "3ce168eae00dec00de1d46a171117d9606dc944d873f35a793e3201542be9349"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "96c37e8532693837824ffc1ec2f39aaaee41e58c1cc877e87371a49c9d2499a8"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "96c37e8532693837824ffc1ec2f39aaaee41e58c1cc877e87371a49c9d2499a8"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "96c37e8532693837824ffc1ec2f39aaaee41e58c1cc877e87371a49c9d2499a8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b91d9ebf93995b24c18d669fb72884f520b153e802d1fd2c20808ae5c0c50f93"
+    sha256 cellar: :any,                 x86_64_linux:  "470be8b2053870916e14a940411617cdcd4320d95e727864b3f491a809faa6ac"
   end
 
   depends_on "go" => :build
+
+  deny_network_access!
+
+  def fetch
+    system "go", "mod", "download"
+  end
 
   def install
     system "go", "build", *std_go_args(ldflags: :goreleaser), "./cmd/mark"
@@ -29,6 +35,6 @@ class Mark < Formula
 
     touch testpath/"mark.toml"
     output = shell_output("#{bin}/mark --config mark.toml sync 2>&1", 1)
-    assert_match "confluence password should be specified", output
+    assert_match "confluence base URL should be specified", output
   end
 end
