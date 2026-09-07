@@ -3,8 +3,8 @@ class Copyparty < Formula
 
   desc "Portable file server"
   homepage "https://github.com/9001/copyparty"
-  url "https://files.pythonhosted.org/packages/28/34/cd8f0d49e55c5d2e66c5dae9787b31f0669b8e2ec412bacdf1f2db853ac6/copyparty-1.20.21.tar.gz"
-  sha256 "c7761ce2593a848ee9b6b9ec6575fe093b33fdbe54805abf43adfb5b6c28228a"
+  url "https://files.pythonhosted.org/packages/50/c3/b71defbae7475c7576f7c7c04eeaa1f0354e393e06fd66335c355a7e55a8/copyparty-1.20.23.tar.gz"
+  sha256 "999d9a2ca323dccb260974d2f4264958d9e0f5b2634dab9803214ecc9cb12625"
   license "MIT"
 
   bottle do
@@ -42,8 +42,8 @@ class Copyparty < Formula
   end
 
   resource "argon2-cffi-bindings" do
-    url "https://files.pythonhosted.org/packages/5c/2d/db8af0df73c1cf454f71b2bbe5e356b8c1f8041c979f505b3d3186e520a9/argon2_cffi_bindings-25.1.0.tar.gz"
-    sha256 "b957f3e6ea4d55d820e40ff76f450952807013d361a65d7f28acc0acbf29229d"
+    url "https://files.pythonhosted.org/packages/0b/43/bb8b6e8708d49a5ab36781333af092d9f483b198a2710d01281204640055/argon2_cffi_bindings-26.1.0.tar.gz"
+    sha256 "63505c71542a44b68b1e38060450fb006404170da375feb31af153e7f9c6205d"
   end
 
   resource "bcrypt" do
@@ -102,8 +102,8 @@ class Copyparty < Formula
   end
 
   resource "pyzmq" do
-    url "https://files.pythonhosted.org/packages/04/0b/3c9baedbdf613ecaa7aa07027780b8867f57b6293b6ee50de316c9f3222b/pyzmq-27.1.0.tar.gz"
-    sha256 "ac0765e3d44455adb6ddbf4417dcce460fc40a05978c08efdf2948072f6db540"
+    url "https://files.pythonhosted.org/packages/e7/8d/5b3d5631c2f4b4b8862f64cd0c9eb777b5710eeb5125b4be8dd0a200a4c0/pyzmq-27.2.0.tar.gz"
+    sha256 "54d4259d1bfae24ecdb5ca79f7acc2eac6c286a02d6a0ae617797cb45f0726d3"
   end
 
   def install
