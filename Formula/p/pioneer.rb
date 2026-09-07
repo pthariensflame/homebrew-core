@@ -1,8 +1,8 @@
 class Pioneer < Formula
   desc "Game of lonely space adventure"
   homepage "https://pioneerspacesim.net/"
-  url "https://github.com/pioneerspacesim/pioneer/archive/refs/tags/20260203.tar.gz"
-  sha256 "861341d317fc0ca506e3a2e8ff00858983652a5656289f8fe9ad1525df1a95da"
+  url "https://github.com/pioneerspacesim/pioneer/archive/refs/tags/20260907.tar.gz"
+  sha256 "11d1fbf745f5fc710f30cce02065b60e5aeb05f7c79b2cfdde8b4c64ec132491"
   license "GPL-3.0-only"
   head "https://github.com/pioneerspacesim/pioneer.git", branch: "master"
 
@@ -24,6 +24,7 @@ class Pioneer < Formula
   depends_on "libpng"
   depends_on "libsigc++@2"
   depends_on "libvorbis"
+  depends_on "openal-soft"
   depends_on "sdl2-compat"
   depends_on "sdl2_image"
 
