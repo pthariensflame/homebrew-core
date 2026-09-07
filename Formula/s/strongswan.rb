@@ -1,8 +1,8 @@
 class Strongswan < Formula
   desc "VPN based on IPsec"
   homepage "https://www.strongswan.org"
-  url "https://download.strongswan.org/strongswan-6.0.7.tar.bz2"
-  sha256 "e518e34e159514f4c6ba80d1f926cb151e0dd4e3a1d94213171234b8b9ae6f55"
+  url "https://download.strongswan.org/strongswan-6.1.0.tar.bz2"
+  sha256 "fe6c97481298767213cfc2e9a1da29fdd8018d481ff4cb9cf0283099654f20d4"
   license "GPL-2.0-or-later"
 
   livecheck do
@@ -27,9 +27,9 @@ class Strongswan < Formula
     depends_on "bison" => :build
     depends_on "gettext" => :build
     depends_on "libtool" => :build
-    depends_on "pkgconf" => :build
   end
 
+  depends_on "pkgconf" => :build
   depends_on "openssl@3"
 
   uses_from_macos "curl"
