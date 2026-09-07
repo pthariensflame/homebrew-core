@@ -12,11 +12,11 @@ class Astgen < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "ebbf830e8d2003329735715cb5d1ea7ca40419ce3c559ec3be24df4e844fdf92"
-    sha256 arm64_sequoia: "78333f52d40447a680acb8447619f255b9056edda3b2a6b7f37fa92f3e57dd59"
-    sha256 arm64_sonoma:  "29223531f584ec3f46e96bb704fc11e16d026f954d3d3e4773b62ab11df99ed8"
-    sha256 arm64_linux:   "f1700517106f6ebcf1fc96d2f88960e90ab6551c4a5abb66a0cd95e4ecf6d8f3"
-    sha256 x86_64_linux:  "682d8cbafbb0993acffcd7ccde9fe3c2d4180e330520a7f92bc281341f895f57"
+    sha256 arm64_tahoe:   "709728d99aa27054e60e6065a6f3f7137d395b04c3e187975ab4aeb003347bbc"
+    sha256 arm64_sequoia: "fa401160268031f3712b4808f8767f295978c7ccaaec01e7ec6c2ad2c1e5a7a5"
+    sha256 arm64_sonoma:  "19e091bf1eed0c9461d8125dce177cecfe3e67b2868c4d765ae936b8db700a0f"
+    sha256 arm64_linux:   "a86ec1cc0e24e71c8dc666d034f9179b51cb0129ebf680efcfba3a9d88756d09"
+    sha256 x86_64_linux:  "bfd3744c9227a1e769b6ee7ce61136a00edb61009dfb57f78d58cd91c72fdc4b"
   end
 
   depends_on "bun" => :build
