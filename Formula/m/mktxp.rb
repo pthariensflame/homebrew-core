@@ -8,11 +8,11 @@ class Mktxp < Formula
   license "GPL-2.0-or-later"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "73b0e3dd30fdb7449fe8705fc2081548e4d264b98b9babf32b13b317bce93e89"
-    sha256 cellar: :any, arm64_sequoia: "b054bd1fdb5478c6440ec3c59c289a2076cc277f635169cdb5cd1cfd48ab8e40"
-    sha256 cellar: :any, arm64_sonoma:  "53285d8ac5ea1c751ccb02d57241164d69031f3fcf02083ffa58dce909664f69"
-    sha256 cellar: :any, arm64_linux:   "c4611c7555505fc6d1282bdcbb4a362a8fdf4cc6c691d057c2c204e95603b81f"
-    sha256 cellar: :any, x86_64_linux:  "6af104e79ef7f1a293bc5da22eef63e8b785d99447c1d06fbd2d81947d2a9cc4"
+    sha256 cellar: :any, arm64_tahoe:   "2e16e5c3ecd7bd241010db04b636758d98f11ca6b42413fb87fc0c203d3f69ce"
+    sha256 cellar: :any, arm64_sequoia: "ad446062151c95e76721b1cd994bbae4c9b494ccb19eebe973fda68dbf9633db"
+    sha256 cellar: :any, arm64_sonoma:  "b4a3ff548c145077b358f1e41bbee61ac69089fd5fd8020739f0b7a3ec7b0fc5"
+    sha256 cellar: :any, arm64_linux:   "d3eab8935893b007ddd31ed7313b6c3e65657c67e920b01fb23ef62b36008ed2"
+    sha256 cellar: :any, x86_64_linux:  "c97463a8dc1da0de3ad43824f753412beb9596776710ebc03b0c5c17c751fe76"
   end
 
   depends_on "libyaml"
