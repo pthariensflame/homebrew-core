@@ -1,8 +1,8 @@
 class Pgroll < Formula
   desc "Postgres zero-downtime migrations made easy"
   homepage "https://pgroll.com"
-  url "https://github.com/xataio/pgroll/archive/refs/tags/v0.16.2.tar.gz"
-  sha256 "d944b31c6a4b90eeb170db249c1a012b85663ff25f438f007068efc76e4546a7"
+  url "https://github.com/xataio/pgroll/archive/refs/tags/v0.16.3.tar.gz"
+  sha256 "28531c0021773e82867c7d0df8859d4fc2eadfc444c6e451f39c58265c9c2a69"
   license "Apache-2.0"
   head "https://github.com/xataio/pgroll.git", branch: "main"
 
