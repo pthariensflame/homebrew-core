@@ -5,6 +5,11 @@ class Ntfs2btrfs < Formula
   sha256 "be3d2deb3c042c862df3ca75b46245300f45e279206bddabd8aa1fc8c92c1a58"
   license "GPL-2.0-only"
 
+  bottle do
+    sha256 cellar: :any, arm64_linux:  "c139abbe7d8f44eb06653558601dca6a230baf8cd8c96a17035c13f4642db4b7"
+    sha256 cellar: :any, x86_64_linux: "8605d243309e7ec4ce118bfa19a1af25ec552eb73509a975a711cb6f074ee0bd"
+  end
+
   depends_on "cmake" => :build
   # C++23 named modules are only supported by the Ninja generator
   depends_on "ninja" => :build
