@@ -4,8 +4,8 @@ class Dpkg < Formula
   # Please use a mirror as the primary URL as the
   # dpkg site removes tarballs regularly which means we get issues
   # unnecessarily and older versions of the formula are broken.
-  url "https://deb.debian.org/debian/pool/main/d/dpkg/dpkg_1.23.7.tar.xz"
-  sha256 "60fe2be72e5f0a4bb0ac7baff3b1697ebc5cfaac1885f66649521571a97440ad"
+  url "https://deb.debian.org/debian/pool/main/d/dpkg/dpkg_1.23.8.tar.xz"
+  sha256 "cc65ca0928a841001feab4ffe24a2a80b250d28e86490d794e5d1ba8346131a5"
   license "GPL-2.0-or-later"
   compatibility_version 1
 
@@ -38,6 +38,7 @@ class Dpkg < Formula
     keg_only "it conflicts with system dpkg"
 
     depends_on "zlib-ng-compat"
+    depends_on "zstd"
   end
 
   patch :DATA
