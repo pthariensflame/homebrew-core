@@ -7,12 +7,11 @@ class Mkbrr < Formula
   head "https://github.com/autobrr/mkbrr.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "6bbd8371f8f34981a60227fed3b54ec24225f8a621c2f729ba93a643c1272f11"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6bbd8371f8f34981a60227fed3b54ec24225f8a621c2f729ba93a643c1272f11"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6bbd8371f8f34981a60227fed3b54ec24225f8a621c2f729ba93a643c1272f11"
-    sha256 cellar: :any_skip_relocation, sonoma:        "b14b5fae3a96620ba0abd81471553d1e130aab84b6858cb850fc9439032030c9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8aaf4a309c68c3226af1c857b6aaf2c9a32da2bd9e97ac501eebd29203605bc0"
-    sha256 cellar: :any,                 x86_64_linux:  "5e2fb50b3c294bca1e67fc59b32275867a09c6b05f51cb50a3195ead2bfc374a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "b951c7f3ea5298b0b6d1d5d39657142a99a6bda470d9379b552a861fb364ab5f"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b951c7f3ea5298b0b6d1d5d39657142a99a6bda470d9379b552a861fb364ab5f"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b951c7f3ea5298b0b6d1d5d39657142a99a6bda470d9379b552a861fb364ab5f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "97d5bf91a2f1573a938d95339b9f004f58d60fa28de93c0fc7318555cb25658d"
+    sha256 cellar: :any,                 x86_64_linux:  "84901cfb5a5b478179d9df4d64e5cf442cb0669a70acb4f8e45c27562c091436"
   end
 
   depends_on "go" => :build
