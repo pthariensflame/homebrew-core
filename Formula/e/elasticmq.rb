@@ -5,6 +5,10 @@ class Elasticmq < Formula
   sha256 "a40dfd03fd8e2f17418f3c61a460c1daea902119145bdce97d09a81f03aa0428"
   license "Apache-2.0"
 
+  bottle do
+    sha256 cellar: :any_skip_relocation, all: "1349e260f8076539c1a65d055ff5267a21fe023a2ff712b909970e08e6cd0a07"
+  end
+
   depends_on "openjdk"
 
   def install
