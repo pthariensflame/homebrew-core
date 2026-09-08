@@ -1,8 +1,8 @@
 class SpotifyPlayer < Formula
   desc "Command driven spotify player"
   homepage "https://github.com/aome510/spotify-player"
-  url "https://github.com/aome510/spotify-player/archive/refs/tags/v0.24.1.tar.gz"
-  sha256 "211da7f76d412708315ccd36b77424bd53bc4ad19813ed69de44451779812f1f"
+  url "https://github.com/aome510/spotify-player/archive/refs/tags/v0.25.0.tar.gz"
+  sha256 "d1f27fcbff28890800bc8e8fa4d15cb12d70448d1486f4a56dc86e06c1525629"
   license "MIT"
   head "https://github.com/aome510/spotify-player.git", branch: "master"
 
@@ -24,6 +24,8 @@ class SpotifyPlayer < Formula
     depends_on "openssl@3"
   end
 
+  deny_network_access! :test
+
   def install
     # Ensure that the `openssl` crate picks up the intended library.
     ENV["OPENSSL_DIR"] = formula_opt_prefix("openssl@3")
@@ -36,8 +38,10 @@ class SpotifyPlayer < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/spotify_player --version")
 
-    cmd = "#{bin}/spotify_player -C #{testpath}/cache -c #{testpath}/config 2>&1"
-    _, stdout, = Open3.popen2(cmd)
-    assert_match "https://accounts.spotify.com/authorize", stdout.gets("\n")
+    assert_match "complete -F _spotify_player", shell_output("#{bin}/spotify_player generate bash")
+
+    (testpath/"config/app.toml").write "client_id = 123\n"
+    output = shell_output("#{bin}/spotify_player -C #{testpath}/cache -c #{testpath}/config 2>&1", 1)
+    assert_match "invalid type: integer `123`, expected a string", output
   end
 end
