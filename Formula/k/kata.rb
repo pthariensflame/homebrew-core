@@ -1,16 +1,16 @@
 class Kata < Formula
   desc "Local-first, federated issue tracker for humans and coding agents"
   homepage "https://katatracker.com"
-  url "https://github.com/kenn-io/kata/releases/download/v0.17.1/kata_0.17.1_source.tar.gz"
-  sha256 "dbe8b7f354cd4cdb563313a9fe48fe53bed63d0ea41369b03b092f41d0b17525"
+  url "https://github.com/kenn-io/kata/releases/download/v0.17.2/kata_0.17.2_source.tar.gz"
+  sha256 "4ce3161dac6b390750713800af4dd0b21b42a18c49683b93ee1bf9b064edb6ff"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "7090cbb47ee010111b8eb3dbd0398920a7f9d1b6002dc5445bd59910bffaf1c1"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7090cbb47ee010111b8eb3dbd0398920a7f9d1b6002dc5445bd59910bffaf1c1"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7090cbb47ee010111b8eb3dbd0398920a7f9d1b6002dc5445bd59910bffaf1c1"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "5f58825cb6aea953028d6c3a3fae5cf03f9a037648ad8e6333d70c79b443f71a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c82818cc6b5d3aedcedf0338c523263cd6f79c8d4fb166ccb9e61c16524d1f9a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "fc445f2f682ef771fc360f2ef9f6983edf5edc10a2ed38cb98dde6a035864904"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "fc445f2f682ef771fc360f2ef9f6983edf5edc10a2ed38cb98dde6a035864904"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "fc445f2f682ef771fc360f2ef9f6983edf5edc10a2ed38cb98dde6a035864904"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "64eccb559d488e3ce7167c8fd7d1289d2973b9670030839f70ce2d62f2ac4301"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "35aba27614f8d55c86298e5e65ebcb2075a00cd1010618432fa66acfdc404f91"
   end
 
   depends_on "go" => :build
