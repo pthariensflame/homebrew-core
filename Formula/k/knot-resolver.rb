@@ -6,6 +6,7 @@ class KnotResolver < Formula
   url "https://knot-resolver.nic.cz/release/knot-resolver-6.4.2.tar.xz"
   sha256 "854ad23367bab66392f7d74f142f2219e3090ae81126b635430fce7b1916f1a3"
   license all_of: ["CC0-1.0", "GPL-3.0-or-later", "LGPL-2.1-or-later", "MIT"]
+  revision 1
   head "https://gitlab.labs.nic.cz/knot/knot-resolver.git", branch: "master"
 
   livecheck do
@@ -126,6 +127,8 @@ class KnotResolver < Formula
     url "https://files.pythonhosted.org/packages/31/33/ebe9e3d1f86c7a0b51094c0a146392045ca1631d2664889539dec8088a33/yarl-1.24.5.tar.gz"
     sha256 "e81b83143bee16329c23db3c1b2d82b29892fcbcb849186d2f6e98a5abe9a57f"
   end
+
+  deny_network_access! :test
 
   def install
     args = %W[
