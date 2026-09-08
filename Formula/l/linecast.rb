@@ -8,7 +8,7 @@ class Linecast < Formula
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "ff48f4e991927fbbcad4b1365f2c98d8ecd3d619b78c45d2e2212b726d5243b7"
+    sha256 cellar: :any_skip_relocation, all: "e82ac3ed794ffc3a7986f67d5a7808a9892754fd152b6425c6531df33d2bc2f7"
   end
 
   depends_on "python@3.14"
