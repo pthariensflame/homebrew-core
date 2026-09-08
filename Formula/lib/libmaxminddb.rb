@@ -1,8 +1,8 @@
 class Libmaxminddb < Formula
   desc "C library for the MaxMind DB file format"
   homepage "https://maxmind.github.io/libmaxminddb/"
-  url "https://github.com/maxmind/libmaxminddb/releases/download/1.13.3/libmaxminddb-1.13.3.tar.gz"
-  sha256 "a66502ea76eadbe17f2cd6fd708946777253972d2ae8157dee1b23a2fb528171"
+  url "https://github.com/maxmind/libmaxminddb/releases/download/1.14.0/libmaxminddb-1.14.0.tar.gz"
+  sha256 "65ff92382c71ef6634b8c13e278651a2efa68f1de28ef3c31fc32369fa0bb3e3"
   license "Apache-2.0"
   compatibility_version 1
 
@@ -22,6 +22,10 @@ class Libmaxminddb < Formula
     depends_on "automake" => :build
     depends_on "libtool" => :build
   end
+
+  depends_on "pkgconf" => :build
+
+  deny_network_access!
 
   def install
     system "./bootstrap" if build.head?
