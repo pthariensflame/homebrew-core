@@ -2,16 +2,15 @@ class Flang < Formula
   desc "LLVM Fortran Frontend"
   homepage "https://flang.llvm.org/"
   license "Apache-2.0" => { with: "LLVM-exception" }
-  revision 1
   head "https://github.com/llvm/llvm-project.git", branch: "main"
 
   stable do
-    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.0/llvm-project-23.1.0.src.tar.xz"
-    sha256 "ab1f0e3ec52448c33e8782eaf0422504b87c7b016b22514653ee0d8fcee479ff"
+    url "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.1/llvm-project-23.1.1.src.tar.xz"
+    sha256 "ebe9be46fe8756d58c5b198ffad0fa2a766257add81a4dc52179bfacc7888ee6"
 
     resource "llvm_man_pages" do
-      url "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.0/llvm_man_pages-23.1.0.tar.xz"
-      sha256 "4574585793ef218dd06ceac849381c981ffce653f342deb7b6db174ac57748a0"
+      url "https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.1/llvm_man_pages-23.1.1.tar.xz"
+      sha256 "66f368b2ee28e3540dcd6a9a1d115173c2708f37cd591508cc79b82708427349"
 
       livecheck do
         formula :parent
