@@ -6,11 +6,11 @@ class Kata < Formula
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "ecf750c8d0c5e490dfd451515eec57f7e22fdea7d87a02829470d8ba8c0a1eba"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ecf750c8d0c5e490dfd451515eec57f7e22fdea7d87a02829470d8ba8c0a1eba"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ecf750c8d0c5e490dfd451515eec57f7e22fdea7d87a02829470d8ba8c0a1eba"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "f106c1636b980c2bfce5a4aa2a56a58d6bcbbbd45809480eb56c40c612054bcd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8eefb444475f5debc46feb043a6710973bb555d6f142584c1f7c31c602565527"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "7090cbb47ee010111b8eb3dbd0398920a7f9d1b6002dc5445bd59910bffaf1c1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7090cbb47ee010111b8eb3dbd0398920a7f9d1b6002dc5445bd59910bffaf1c1"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7090cbb47ee010111b8eb3dbd0398920a7f9d1b6002dc5445bd59910bffaf1c1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "5f58825cb6aea953028d6c3a3fae5cf03f9a037648ad8e6333d70c79b443f71a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c82818cc6b5d3aedcedf0338c523263cd6f79c8d4fb166ccb9e61c16524d1f9a"
   end
 
   depends_on "go" => :build
