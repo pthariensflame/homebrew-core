@@ -11,7 +11,7 @@ class Lesspipe < Formula
   ]
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "abba8ccdd31b492a79aa62f3a0db760646b321c0db86c105363a256ef95e19cb"
+    sha256 cellar: :any_skip_relocation, all: "d12c1845ae5644854e76d81fb76c22f2c9537dd13fc3fa25f56d41043a5479cf"
   end
 
   uses_from_macos "zsh" => :build # needed to guarantee installation of zsh completions
