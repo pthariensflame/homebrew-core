@@ -1,8 +1,8 @@
 class Reshape < Formula
   desc "Easy-to-use, zero-downtime schema migration tool for Postgres"
   homepage "https://github.com/fabianlindfors/reshape"
-  url "https://github.com/fabianlindfors/reshape/archive/refs/tags/v0.9.3.tar.gz"
-  sha256 "8aed2b35a3581d2249c4742139817bd8ef2a5a9da14603809f8c2c295ee8955c"
+  url "https://github.com/fabianlindfors/reshape/archive/refs/tags/v0.10.0.tar.gz"
+  sha256 "66b825c3de2036277a9427200e61958ccefb7070158236694492afb25c83bdfa"
   license "MIT"
   head "https://github.com/fabianlindfors/reshape.git", branch: "main"
 
