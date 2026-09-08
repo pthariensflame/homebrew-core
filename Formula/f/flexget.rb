@@ -3,8 +3,8 @@ class Flexget < Formula
 
   desc "Multipurpose automation tool for content"
   homepage "https://www.flexget.com"
-  url "https://files.pythonhosted.org/packages/23/34/a1376b3a1a61c4158c1b9a9f934b643c9e8cf414f1b08449d0e77bda3612/flexget-3.20.10.tar.gz"
-  sha256 "74bb9ed74d380efabc361f44a65b9be2e2a4f0911b34cb8f011edac37d5023e7"
+  url "https://files.pythonhosted.org/packages/98/1f/8e7717149bad916721725aec9b0a5105baeffb34eede4cd9dc2c65179dac/flexget-3.20.11.tar.gz"
+  sha256 "49df7b009e50644320f8b93057217f2e1a3e16ff29b96ce248b0d7d9bfe727d6"
   license "MIT"
 
   bottle do
@@ -87,8 +87,8 @@ class Flexget < Formula
   end
 
   resource "curl-cffi" do
-    url "https://files.pythonhosted.org/packages/d1/f6/347067dfacb19e44a4166d7bdb183e3a2629680beceb5e52f7cb2cc1a3b4/curl_cffi-0.16.2.tar.gz"
-    sha256 "2986a86cdcf514ab73632c2de62a01db3cc97f7ecf17798a1be16180f4474198"
+    url "https://files.pythonhosted.org/packages/82/e1/730125c43e3e331d98e17af3cb310ba526b3f1101b7635ca23d976ebfcf5/curl_cffi-0.16.3.tar.gz"
+    sha256 "d15d0c2a35f2d75bec430c28946c2a833f421c85773bdb0795182cc5c515665b"
   end
 
   resource "feedparser" do
