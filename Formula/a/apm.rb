@@ -3,8 +3,8 @@ class Apm < Formula
 
   desc "Dependency manager for AI agent configuration"
   homepage "https://microsoft.github.io/apm/"
-  url "https://files.pythonhosted.org/packages/20/b7/b0a29b923f3f423fb5d62ba629da1ec964c8720c1733176e4e6f9f8cf0b2/apm_cli-0.29.1.tar.gz"
-  sha256 "20c7db3a1147b103467cd19dac68d4a0f3b4fcebbc5ecf3eab3e1c86e6f51a6c"
+  url "https://files.pythonhosted.org/packages/80/63/11eb297d227893a5418efe044d99f74390985ceb8730a7d007538372dc02/apm_cli-0.30.0.tar.gz"
+  sha256 "4f412c65aac6a19864c0552904199d85e8f1a286c60de48ebd3b1422eccb760f"
   license "MIT"
   head "https://github.com/microsoft/apm.git", branch: "main"
 
@@ -100,8 +100,8 @@ class Apm < Formula
   end
 
   resource "gitpython" do
-    url "https://files.pythonhosted.org/packages/6f/61/3285044215fb596bf093e39ccb96ece0a1076a8ca57a61e069a6a33cdb1b/gitpython-3.1.61.tar.gz"
-    sha256 "f51c24d8c0f733a195447385f5774a5dfe8767f5acfd7994a33755644c6ecc95"
+    url "https://files.pythonhosted.org/packages/e0/db/3ca813cbacb23ab6fe46ff38a9b5ef8e73e970c8051f2ce903aacafe0446/gitpython-3.1.62.tar.gz"
+    sha256 "1791de66309bc0c7cfca40bf8d2e3de7ca091cbf94e6051be1ad0722c61062af"
   end
 
   resource "h11" do
