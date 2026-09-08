@@ -2,8 +2,8 @@ class Wasmer < Formula
   desc "Universal WebAssembly Runtime"
   homepage "https://wasmer.io"
   url "https://github.com/wasmerio/wasmer.git",
-    tag:      "v7.4.0",
-    revision: "32b50f8b600efa8e2d5f88593c453139bf1ca222"
+    tag:      "v7.4.1",
+    revision: "df29aa22c6159a147f992375f5670edf77f8d6a0"
   license "MIT"
   head "https://github.com/wasmerio/wasmer.git", branch: "main"
 
