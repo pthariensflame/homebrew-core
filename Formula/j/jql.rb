@@ -7,11 +7,11 @@ class Jql < Formula
   head "https://github.com/yamafaktory/jql.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "6518124fe4215be9eefdfb1c0fd95ebf9f8def08918236efe0306c77edeb71d2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "010164323f907ac73b5086e5f6e63b0cde81f61707b05ebb4f9464ec02bb7b00"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "81f683f67fd1efc23ee8a5e521168b3398c67a4ffb7dd4618ad335bd06f6f31e"
-    sha256 cellar: :any,                 arm64_linux:   "2635c70abdd884c653402e06bc3ee44a3f7ef8a8b178a1a92e9faddd820d7e78"
-    sha256 cellar: :any,                 x86_64_linux:  "f409b30c23a15222818fcc99fee2baf322a2b4dc9e6afb98f2d95263e736f514"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "9a875d200bdf64b0aede44b1989434d6973e3cf1e6514610dc28989681058202"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9982e09e15a9ab126efe5fbc9da0eb5c18dc661c1b36ec3fefc6c93ecc807d1d"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7fbd2a571e277027c26f401a92d21f87c75ef6844699719177b7182f74e582db"
+    sha256 cellar: :any,                 arm64_linux:   "9ff1dcbd49eb975513839d8a94ace34bb2c3d17e834d96e501bbb57454446fbd"
+    sha256 cellar: :any,                 x86_64_linux:  "051f6585208107a20c4258e8cd060c83deedf748bd41e6ee961c5fc421e94e99"
   end
 
   depends_on "rust" => :build
