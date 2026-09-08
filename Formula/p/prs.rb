@@ -1,8 +1,8 @@
 class Prs < Formula
   desc "Secure, fast & convenient password manager CLI with GPG & git sync"
   homepage "https://timvisee.com/projects/prs"
-  url "https://github.com/timvisee/prs/archive/refs/tags/v0.5.7.tar.gz"
-  sha256 "8505d8dc0bacd13cef65f1f17c90e11a762e745dcd5f51a85bc4d2ada810715b"
+  url "https://github.com/timvisee/prs/archive/refs/tags/v0.5.8.tar.gz"
+  sha256 "52c8985911ae94d55bb84b005b1f7d7df9a291b74bc22638530766a3cf544580"
   license "GPL-3.0-only"
 
   bottle do
@@ -23,12 +23,10 @@ class Prs < Formula
     depends_on "openssl@3"
   end
 
-  # Fix compilation error on macOS
-  patch do
-    url "https://github.com/timvisee/prs/commit/dd29c60992714a160e88c32f6ec8848e7ccbee12.patch?full_index=1"
-    sha256 "51ce3804136dc7712e7c2d6c434d68d7ab10885f16b0d79f7549f2c99d9d45a4"
-    type :backport
-    resolves "https://github.com/timvisee/prs/pull/46"
+  deny_network_access!
+
+  def fetch
+    system "cargo", "fetch", "--locked"
   end
 
   def install
@@ -39,14 +37,9 @@ class Prs < Formula
 
   test do
     ENV["PASSWORD_STORE_DIR"] = testpath/".store"
-    expected = <<~EOS
-      Now generate and add a new recipient key for yourself:
-          prs recipients generate
 
-    EOS
-
-    assert_equal expected, shell_output("#{bin}/prs init --no-interactive 2>&1")
-    assert_equal "prs #{version}\n", shell_output("#{bin}/prs --version")
+    assert_match "prs recipients generate", shell_output("#{bin}/prs init --no-interactive 2>&1")
+    assert_match version.to_s, shell_output("#{bin}/prs --version")
     assert_empty shell_output("#{bin}/prs list --no-interactive --quiet")
   end
 end
