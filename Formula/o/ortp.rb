@@ -7,11 +7,11 @@ class Ortp < Formula
   head "https://gitlab.linphone.org/BC/public/linphone-sdk.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "ec4f268d7bbfa4af0d92605fc2e4302e653fd21ee4a7d669bc34ba706a3398f2"
-    sha256 cellar: :any, arm64_sequoia: "6aafc3785ef52a52b470d1bfe0b90f469706302ddf4f5591b897fb956b1b5158"
-    sha256 cellar: :any, arm64_sonoma:  "2f2d95509d57ba7749d82a17e31e936ccc7514045719c206535a7104a6dabf27"
-    sha256 cellar: :any, arm64_linux:   "389fd11dbf7a13fc9f03137e8d2c487e8cbde35095d0707f37269390abd1cee2"
-    sha256 cellar: :any, x86_64_linux:  "e871e43d73f3ec3e2513762c69fb868f1ae5721618a58cbe562327e20ef74c6a"
+    sha256 cellar: :any, arm64_tahoe:   "1eb645fb74a7a25d51f11e29774ab113e148fadb59377bcab9b196106b978274"
+    sha256 cellar: :any, arm64_sequoia: "7966758f6129d6bae28cf9df66ebff7df2cd1570383e5d18ca761854a52e9a48"
+    sha256 cellar: :any, arm64_sonoma:  "e612091f3221830002a9e89261fca6137b627042e620d0fe781a8ce29dda38c9"
+    sha256 cellar: :any, arm64_linux:   "f7142a99b17cc0fff773eca2f53eca289d4a94eff7f76cc26a70273008bd785e"
+    sha256 cellar: :any, x86_64_linux:  "8970d654910cbca5d309bb43780ed8ad030d28fea4d81ef8c29a82280ad8739d"
   end
 
   depends_on "cmake" => :build
