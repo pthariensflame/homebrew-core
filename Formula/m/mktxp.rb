@@ -3,8 +3,8 @@ class Mktxp < Formula
 
   desc "Prometheus Exporter for Mikrotik RouterOS devices"
   homepage "https://github.com/akpw/mktxp"
-  url "https://files.pythonhosted.org/packages/51/38/8d05e5536f574fd39da0e61833dae05488ac928ed2d6bcca4b12f6a9f364/mktxp-2.0.0.tar.gz"
-  sha256 "53608c43f8e56298005fabe9d1e4658627ad2ca7a87073d6e4bcb57b9d42d97a"
+  url "https://files.pythonhosted.org/packages/0f/c4/dfd89ec348dc1f4526fb79fff8d153abe91c033cb9ec0be965f43b442f41/mktxp-2.0.1.tar.gz"
+  sha256 "feadace67025b9db2e26a530d3778da85be0ae8dd42e4a5b3329064ac4cfdd54"
   license "GPL-2.0-or-later"
 
   bottle do
