@@ -9,12 +9,11 @@ class Beets < Formula
   head "https://github.com/beetbox/beets.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "de7a359984e40ec99f8581feeaa6e67a85fe1a685308d943638e2a816a3e6476"
-    sha256 cellar: :any, arm64_sequoia: "dd2e427255918387c191bcb91815465bdee18468cea9cff079f674731c3bd045"
-    sha256 cellar: :any, arm64_sonoma:  "d627ccea780a4262fdfaa3bf05033df7c97aecd75905230ac3afdc8d4427b3b1"
-    sha256 cellar: :any, sonoma:        "b24fa996c419cf22c58bec0416c99aafdbc1c801d8338409342d11913dd951e1"
-    sha256 cellar: :any, arm64_linux:   "781b52a1deed3dad7a80726b97cc2081de0956f7f3e14382e9dd84befa759d19"
-    sha256 cellar: :any, x86_64_linux:  "7bfc26fb7c7c3f77596b6ec6899a5cf60acd631acc3a2500519ea074bcfd5f7a"
+    sha256 cellar: :any, arm64_tahoe:   "50f03f6a0720e452fb6aad43fa407b8e2b5e4337dfee9e5cfe2833b8f3c21ddc"
+    sha256 cellar: :any, arm64_sequoia: "9eeaf54378dc36078175d800302c674f328244b1ada108a2978f05617e891e2b"
+    sha256 cellar: :any, arm64_sonoma:  "e3e31e52ffba674202e8e84cd58b3f507430550be3d18a248d7bea1b89b76c35"
+    sha256 cellar: :any, arm64_linux:   "0e61b7cd8745b16d9fda96ab4adf6ba86ed548b63b2ef1a424e175af33fded90"
+    sha256 cellar: :any, x86_64_linux:  "6454d6b02d1fb84f0ecd5f5c20127557c7a0e0f1007fa8638194426afb62e87a"
   end
 
   depends_on "cython" => :build
