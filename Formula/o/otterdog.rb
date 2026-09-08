@@ -3,10 +3,9 @@ class Otterdog < Formula
 
   desc "Manage GitHub organizations at scale using an infrastructure as code approach"
   homepage "https://otterdog.readthedocs.io/en/latest/"
-  url "https://files.pythonhosted.org/packages/19/88/fffe8ad66be0149d1f34ec12bdd8abb3dde467b4780746cede544d83b26c/otterdog-1.4.0.tar.gz"
-  sha256 "ea3f07622c212526869e1755b124531585343bd0646ee3e72f0ba1c57c3fc87c"
+  url "https://files.pythonhosted.org/packages/fa/c8/ba6fafb19415e0261e96900fa1cd35354ff35790039c2712e72809d32d6c/otterdog-1.5.0.tar.gz"
+  sha256 "3f9e5f38e6435e04c74fad2649af07e8e136dc47364a74239b4a4ae0de43b5a8"
   license "EPL-2.0"
-  revision 3
   head "https://github.com/eclipse-csi/otterdog.git", branch: "main"
 
   bottle do
@@ -31,8 +30,8 @@ class Otterdog < Formula
   # No sdist on PyPI, so we use the GitHub tarball
   # Ref: https://github.com/microsoft/playwright-python/issues/2579
   resource "playwright" do
-    url "https://github.com/microsoft/playwright-python/archive/refs/tags/v1.61.0.tar.gz"
-    sha256 "ed26e5ef51c730b2bb8019042cb529f56dd459acd1a9bcbe3c0373ca598104ed"
+    url "https://github.com/microsoft/playwright-python/archive/refs/tags/v1.62.0.tar.gz"
+    sha256 "30cc72a0c00a22c3d287539233d3d6abd579becbfe7d02aef80bd3e75c951455"
 
     # We track poetry.lock version while PyPI sdist is not available as it
     # guarantees a compatible version is installed.
@@ -83,8 +82,8 @@ class Otterdog < Formula
   end
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/ea/9a/c15a60547004a3f3cea20296c934f827ddd7bdba225a2e7e9fcb5ec48c80/anyio-4.15.0.tar.gz"
-    sha256 "b5c620ed540725e2579c31b17bb995b3bf02c9281c9cace04c7d186380bab85e"
+    url "https://files.pythonhosted.org/packages/a9/d2/f4d173e22df740bc37b1db102b386ba719b66e95b0f0d751f556b387e6d2/anyio-4.15.1.tar.gz"
+    sha256 "9f28306018cbd6d329e64a36d58256edff76dd996fe423bc957326e578b82a94"
   end
 
   resource "asyncer" do
@@ -123,8 +122,8 @@ class Otterdog < Formula
   end
 
   resource "gitpython" do
-    url "https://files.pythonhosted.org/packages/6f/61/3285044215fb596bf093e39ccb96ece0a1076a8ca57a61e069a6a33cdb1b/gitpython-3.1.61.tar.gz"
-    sha256 "f51c24d8c0f733a195447385f5774a5dfe8767f5acfd7994a33755644c6ecc95"
+    url "https://files.pythonhosted.org/packages/e0/db/3ca813cbacb23ab6fe46ff38a9b5ef8e73e970c8051f2ce903aacafe0446/gitpython-3.1.62.tar.gz"
+    sha256 "1791de66309bc0c7cfca40bf8d2e3de7ca091cbf94e6051be1ad0722c61062af"
   end
 
   resource "greenlet" do
