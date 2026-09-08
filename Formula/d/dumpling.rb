@@ -1,8 +1,8 @@
 class Dumpling < Formula
   desc "Creating SQL dump from a MySQL-compatible database"
   homepage "https://github.com/pingcap/tidb"
-  url "https://github.com/pingcap/tidb/archive/refs/tags/v26.3.11.tar.gz"
-  sha256 "e0a8cb0ccb3c838453c971eb9cf0e7f6ac486363ba55739d19a4b2db9ab8d33e"
+  url "https://github.com/pingcap/tidb/archive/refs/tags/v26.3.12.tar.gz"
+  sha256 "9c386497a232a8433d0cd05839638abc2494d0a448eb893a64dc1098bec9672f"
   license "Apache-2.0"
   head "https://github.com/pingcap/tidb.git", branch: "master"
 
