@@ -3,10 +3,9 @@ class Govulncheck < Formula
   homepage "https://github.com/golang/vuln"
   # git checkout needed for buildInfo support
   url "https://github.com/golang/vuln.git",
-      tag:      "v1.7.0",
-      revision: "617f44b718537dccdea1915395650e0529e3b72e"
+      tag:      "v1.8.0",
+      revision: "709015412431dd2b5b28a53c06c70bc02d49074c"
   license "BSD-3-Clause"
-  revision 3
   head "https://github.com/golang/vuln.git", branch: "master"
 
   bottle do
