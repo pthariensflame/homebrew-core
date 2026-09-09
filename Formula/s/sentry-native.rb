@@ -1,8 +1,8 @@
 class SentryNative < Formula
   desc "Sentry SDK for C, C++ and native applications"
   homepage "https://docs.sentry.io/platforms/native/"
-  url "https://github.com/getsentry/sentry-native/archive/refs/tags/0.16.6.tar.gz"
-  sha256 "a194ac434da1534723556c5628256752208b0b6989fee7bf5ed6c5b3c84773ab"
+  url "https://github.com/getsentry/sentry-native/releases/download/0.16.6/sentry-native.zip"
+  sha256 "d35145daaafddc50c0c87ec564acf0ba9968e67b23981e7f57c702b2dd6f2ff1"
   license "MIT"
 
   bottle do
@@ -18,46 +18,21 @@ class SentryNative < Formula
   uses_from_macos "curl"
 
   on_linux do
+    depends_on "pkgconf" => :build
+    depends_on "libunwind"
     depends_on "zlib-ng-compat"
   end
 
-  # No recent tagged releases, use the latest commit
-  resource "breakpad" do
-    url "https://github.com/getsentry/breakpad.git",
-        revision: "47d70322c848012ed801e36841767d7ffb79412d"
-  end
-
-  # No recent tagged releases, use the latest commit
-  resource "crashpad" do
-    url "https://github.com/getsentry/crashpad/archive/aae505d3daf73e8a48136ccc7398663f16096712.tar.gz"
-    sha256 "cfc713e322f1ec7c9d963a9e25b176937464a39a7e95826ffe588cd0bb9bad62"
-  end
-
-  resource "crashpad/third_party/mini_chromium/mini_chromium" do
-    url "https://github.com/getsentry/mini_chromium/archive/bcc80d6edf8b49d9bbe7a06fff308c222287b112.tar.gz"
-    sha256 "009adf4cce8d3aba9e8d5ecd802cdc60eb87d271a3fb5f356c453b4a4122b219"
-  end
-
-  resource "crashpad/third_party/lss/lss" do
-    url "https://chromium.googlesource.com/linux-syscall-support.git",
-        revision: "9719c1e1e676814c456b55f5f070eabad6709d31"
-  end
-
-  # No recent tagged releases, use the latest commit
-  resource "libunwindstack-ndk" do
-    url "https://github.com/getsentry/libunwindstack-ndk.git",
-        revision: "284202fb1e42dbeba6598e26ced2e1ec404eecd1"
-  end
-
-  resource "third-party/lss" do
-    url "https://chromium.googlesource.com/linux-syscall-support.git",
-        tag:      "v2024.02.01",
-        revision: "ed31caa60f20a4f6569883b2d752ef7522de51e0"
-  end
-
   def install
-    resources.each { |r| r.stage buildpath/"external"/r.name }
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    rm_r("vendor/libunwind")
+
+    args = %w[
+      -DSENTRY_BUILD_EXAMPLES=OFF
+      -DSENTRY_BUILD_TESTS=OFF
+    ]
+    args << "-DSENTRY_LIBUNWIND_SYSTEM=ON" if OS.linux?
+
+    system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
