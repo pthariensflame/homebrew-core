@@ -7,11 +7,11 @@ class TreallaProlog < Formula
   head "https://github.com/trealla-prolog/trealla-prolog.git", branch: "main"
 
   bottle do
-    sha256 arm64_tahoe:   "56beaeaef0354cf8147607a3a55d679e9d44f3fa48216fe2dc33e20029d18dce"
-    sha256 arm64_sequoia: "4a616585b79b17bf01ad9a5872fc4c4d9492e37168ed43ead416019490f5b603"
-    sha256 arm64_sonoma:  "999589b744ef4e24ecabd502f4a4e94c6013f1e508ade65f7de20cd1ced445ca"
-    sha256 arm64_linux:   "909cbe550899f6e3b5de55191ce3364f7313f710deee4398bf7ce531b53cab0b"
-    sha256 x86_64_linux:  "eb35639b0d4408c74d7a6947fda71d282629f028cbeed837ed6b1f4179c51357"
+    sha256 arm64_tahoe:   "1c2e2d9e8460ba1fecb2bc7f51d90bea5f9be46998099fcd043e2aa8a6830ed7"
+    sha256 arm64_sequoia: "f680fa633d7d9fb65a4a588660841b4dc61a1ea4b52054cc002859a465e50110"
+    sha256 arm64_sonoma:  "3d4fa71c1342107689fb722f3f6d5aa628453504fd1f3b304ea193dc6c9caf7f"
+    sha256 arm64_linux:   "c80ae7fe08821afe647f393df46b909a03891a5bc7ff3f1d72eee40c1caaa9a4"
+    sha256 x86_64_linux:  "22f41c9a0b053a6d0e0a25b640a38754696797b1dd67635ea7f945dbf5799bdd"
   end
 
   depends_on "openssl@4"
