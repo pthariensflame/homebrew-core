@@ -367,7 +367,8 @@ jobs:
                 ocaml|\
                 ocaml-findlib|\
                 openjdk|\
-                rust
+                pkgconf|\
+                rust\
                 ).rb"
               keep_if_no_match: true
               allow_any_match: true
@@ -399,18 +400,6 @@ jobs:
                 qt@5|\
                 qtwebengine|\
                 texlive\
-                ).rb"
-              keep_if_no_match: true
-              allow_any_match: true
-
-            - label: CI-no-fail-fast-deps
-              path: "Formula/.+/(\
-                glib|\
-                libxml2|\
-                mesa|\
-                openssl@3|\
-                python@3.14|\
-                zlib-ng-compat\
                 ).rb"
               keep_if_no_match: true
               allow_any_match: true
