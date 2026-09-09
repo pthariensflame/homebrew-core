@@ -1,8 +1,8 @@
 class TreallaProlog < Formula
   desc "Compact and efficient ISO Prolog interpreter written in plain old C"
   homepage "https://github.com/trealla-prolog/trealla-prolog"
-  url "https://github.com/trealla-prolog/trealla-prolog/archive/refs/tags/v3.9.54.tar.gz"
-  sha256 "6c28db8d8d8aafb0eebfd103a623b528fb71d793974e9caee2e9bcc80fe46692"
+  url "https://github.com/trealla-prolog/trealla-prolog/archive/refs/tags/v3.9.55.tar.gz"
+  sha256 "6e907cb03c96199a5353d0c684abd783a3464d8bef815ad3bca0b371cf44dc57"
   license "MIT"
   head "https://github.com/trealla-prolog/trealla-prolog.git", branch: "main"
 
