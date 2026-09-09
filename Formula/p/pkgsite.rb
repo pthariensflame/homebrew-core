@@ -1,8 +1,8 @@
 class Pkgsite < Formula
   desc "Documentation server for Go packages"
   homepage "https://pkg.go.dev/golang.org/x/pkgsite"
-  url "https://github.com/golang/pkgsite/archive/refs/tags/v0.4.0.tar.gz"
-  sha256 "7cc5627428e42bf5a8f99608d704a98cd888fbff2bb2bf292f14f0af15b5692a"
+  url "https://github.com/golang/pkgsite/archive/refs/tags/v0.5.0.tar.gz"
+  sha256 "ec88faa9940cdcd58ed15058a1a932f81b4c3a21cf37b3119bf974a3137373fd"
   license "BSD-3-Clause"
   head "https://go.googlesource.com/pkgsite.git", branch: "master"
 
@@ -60,10 +60,10 @@ class Pkgsite < Formula
 
     raise "pkgsite exited unexpectedly" if Process.waitpid(pid, Process::WNOHANG)
 
-    package_output = shell_output("curl -s http://127.0.0.1:#{port}/v1beta/package/example.com/testmod")
+    package_output = shell_output("curl -s http://127.0.0.1:#{port}/v1/package/example.com/testmod")
     assert_match '"modulePath":"example.com/testmod"', package_output
 
-    symbols_output = shell_output("curl -s http://127.0.0.1:#{port}/v1beta/symbols/example.com/testmod")
+    symbols_output = shell_output("curl -s http://127.0.0.1:#{port}/v1/symbols/example.com/testmod")
     assert_match '"name":"Hello"', symbols_output
     assert_match '"kind":"Function"', symbols_output
     assert_match "func Hello() string", symbols_output
