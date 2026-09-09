@@ -333,12 +333,10 @@ jobs:
             - label: long dependent tests
               path: "Formula/.+/(\
                 boost|\
-                cabal-install|\
                 cmake|\
                 freetype|\
                 gcc|\
                 gettext|\
-                ghc|\
                 glib|\
                 gtk\\+3|\
                 jpeg-turbo|\
@@ -347,16 +345,29 @@ jobs:
                 node|\
                 numpy|\
                 openblas|\
-                openjdk|\
                 openssl@3|\
                 pango|\
                 pcre2|\
                 python@3.14|\
                 qtbase|\
                 readline|\
-                rust|\
                 xz|\
                 zstd\
+                ).rb"
+              keep_if_no_match: true
+              allow_any_match: true
+
+            - label: CI-parallel-dependents
+              path: "Formula/.+/(\
+                cabal-install|\
+                docbook-xsl|\
+                erlang|\
+                ghc|\
+                go|\
+                ocaml|\
+                ocaml-findlib|\
+                openjdk|\
+                rust
                 ).rb"
               keep_if_no_match: true
               allow_any_match: true
@@ -371,13 +382,13 @@ jobs:
                     ocaml|\
                     ocaml-findlib|\
                     ocaml-num|\
-                    openjdk|\
                     pyqt-builder|\
                     rust\
                     )\\.rb"
                 - "Aliases/(\
                     ghc|\
-                    go\
+                    go|\
+                    openjdk\
                     )(@[0-9.]+)?$"
               missing_content: '\n  revision [0-9]+\n'
               keep_if_no_match: true
