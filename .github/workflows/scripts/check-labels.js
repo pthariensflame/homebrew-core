@@ -28,7 +28,9 @@ module.exports = async ({github, context, core}, formulae_detect, dependent_test
 
     core.setOutput('linux-self-hosted', label_names.includes(`CI-linux-self-hosted${deps_suffix}`))
 
-    if (label_names.includes(`CI-no-fail-fast${deps_suffix}`)) {
+    if (dependent_testing) {
+      core.setOutput('fail-fast', false)
+    } else if (label_names.includes(`CI-no-fail-fast${deps_suffix}`)) {
       console.log(`CI-no-fail-fast${deps_suffix} label found. Continuing tests despite failing matrix builds.`)
       core.setOutput('fail-fast', false)
     } else {
