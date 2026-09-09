@@ -10,12 +10,11 @@ class Opencode < Formula
   end
 
   bottle do
-    sha256                               arm64_tahoe:   "a9dc7628cd613d1a1c94b42256b0b450af438c0f9c9132651b363fbe14a4f730"
-    sha256                               arm64_sequoia: "a9dc7628cd613d1a1c94b42256b0b450af438c0f9c9132651b363fbe14a4f730"
-    sha256                               arm64_sonoma:  "a9dc7628cd613d1a1c94b42256b0b450af438c0f9c9132651b363fbe14a4f730"
-    sha256 cellar: :any_skip_relocation, sonoma:        "1874884dee4b0c59100926a2061596b806cbeeff2f2f2e9c1b27b8b6c258ea6a"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3cdd02b79694885c40f941342c971223076735c4e28887af9a37ec8bd8ba7b23"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "df13fb71d73abeba66fb514e9f806bda22bbd831c8e66920f16a24d2271c1763"
+    sha256 arm64_tahoe:   "cc2ed06c5243b678e0822598ead33442327a967206b7a73ab6d9d30fdbb4b6b9"
+    sha256 arm64_sequoia: "f28fb304d187f075ef64a9aaed99cb4900699199defe1a69e113070228423134"
+    sha256 arm64_sonoma:  "32feab0437965d38c73a2717c9be2abe31d8039eb03335246d384c71f6c7079e"
+    sha256 arm64_linux:   "93885a6f47b79fa58ef575d60e30b5677467b87fd4d2ada6373815ffed3c21a3"
+    sha256 x86_64_linux:  "6fd7d0b5885503a4a3c220846cccc22ea4ca0c78b739068ebf40c208d7903223"
   end
 
   depends_on "bun" => :build
