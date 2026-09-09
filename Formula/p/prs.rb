@@ -6,12 +6,11 @@ class Prs < Formula
   license "GPL-3.0-only"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "f53f048b8032b0c131746e445fd4c896a65e5aae465e7b084a71a79a82cebe38"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c5abb9e5a43f538983f27343f23e0ed1871abc7a2e7a1f2ac3c6c365d89c1384"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "16b44d4ebdd5bba2a59fcc869c82138465dfefd8059ce3ded727dd0cebf3be7a"
-    sha256 cellar: :any_skip_relocation, sonoma:        "7f82b973048c8f4b0f3b3c724a251f72269debbe48122154cfd32c110b63058d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "80b326c45a7233857d739be2a63869e098b78a048a8c9e6a65a80fc544a44d7c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ab608fbae7c8ed1b01104fe4e95d8035c815a751e299355d9af19492b6c35225"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "65811791381993bd346caf446b5073bf65a225265efc8dea880b3cbfeb2a4cd2"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3c47cd6f196652f8b23b875ae86ba4455b156f9702290d697073caccfef829f6"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "621ea15eecbd92ddda26b25ee228ff4c7408b4873e1880fd093b5c7d43f64330"
+    sha256 cellar: :any,                 arm64_linux:   "ab9fb359d4b0076efa9fec3420190f85ca80e04d93ae7c08157fccb07acc292f"
+    sha256 cellar: :any,                 x86_64_linux:  "98b6af19f6d60862c6ec75c37ffa09764b6d223fd84ba7490f55255e2ea4a018"
   end
 
   depends_on "pkgconf" => :build
