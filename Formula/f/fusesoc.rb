@@ -3,8 +3,8 @@ class Fusesoc < Formula
 
   desc "Package manager and build abstraction tool for HDL code"
   homepage "https://fusesoc.net"
-  url "https://files.pythonhosted.org/packages/80/7d/80bd86ba4d4fb5f387f36ea701335930e541a88df9329ac19559880d2938/fusesoc-2.4.6.tar.gz"
-  sha256 "774e0316d57bd4292bbd7e75c75f5c9742929f6c8e08c99858646fdc0103f17c"
+  url "https://files.pythonhosted.org/packages/3c/58/639a43653bbd97d1fa75255b57a224755c775df54b568fb714651530e104/fusesoc-2.4.7.tar.gz"
+  sha256 "f1023de57524660b5926fec6807af0edecb04418918e39a15224c83855546894"
   license "BSD-2-Clause"
 
   bottle do
@@ -17,7 +17,10 @@ class Fusesoc < Formula
   end
 
   depends_on "libyaml"
+  depends_on "pydantic" => :no_linkage
   depends_on "python@3.14"
+
+  pypi_packages exclude_packages: "pydantic"
 
   resource "argcomplete" do
     url "https://files.pythonhosted.org/packages/87/6f/5a73f04007ca950701765949209f068da628bd11f9c2da287278ce91e0ee/argcomplete-3.7.2.tar.gz"
@@ -35,8 +38,8 @@ class Fusesoc < Formula
   end
 
   resource "fastjsonschema" do
-    url "https://files.pythonhosted.org/packages/e4/98/474719c58eddaf77fa443b063693e76d49db32bbe851bcbaf58d2700119f/fastjsonschema-2.22.1.tar.gz"
-    sha256 "0b83d1ce8d7845b959dcb20e1a5c3c8883b6541d9c52ab02cce5166b75ec805f"
+    url "https://files.pythonhosted.org/packages/33/a4/9473c7c3b87009d9c1d74034e4a0f6a35ff0d42dd0f9866d0c3ec4e9217b/fastjsonschema-2.22.2.tar.gz"
+    sha256 "72064e12356a7d6ef02165be2946b9abadbdf238536e07eb587e3dbaa33099cf"
   end
 
   resource "jinja2" do
