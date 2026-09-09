@@ -24,6 +24,20 @@ class River < Formula
   depends_on "rust" => :build
   depends_on "openssl@3"
 
+  # `pandora-web-server` moved off GitHub, so the pinned git dependency 404s
+  patch do
+    url "https://github.com/memorysafety/river/commit/d7de7566ab1cccb3a8c46c609e9ae5d511a9b0ae.patch?full_index=1"
+    sha256 "23626140f673e189fa67145eb6c25e205536ecdddd784a03836b8da3577ae718"
+    type :unofficial
+    resolves "https://github.com/memorysafety/river/pull/92"
+  end
+
+  deny_network_access!
+
+  def fetch
+    system "cargo", "fetch", "--locked", "--target", "host-tuple"
+  end
+
   def install
     # Ensure that the `openssl` crate picks up the intended library.
     ENV["OPENSSL_DIR"] = formula_opt_prefix("openssl@3")
