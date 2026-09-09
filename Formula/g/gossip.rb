@@ -27,6 +27,21 @@ class Gossip < Formula
   end
 
   def install
+    odie "Remove `rust-lightning` source replacement!" if build.stable? && version > "0.14.0"
+    # `nostr-types` pins a `rust-lightning` fork whose repository was removed, so
+    # point the identical commit at upstream. Upstream gossip dropped the fork in
+    # https://github.com/mikedilger/gossip/commit/541c7ae0d3fd4b62af9d86a46a164a16f4b96cb2
+    (buildpath/".cargo/config.toml").append_lines <<~TOML
+      [source."git+https://github.com/mikedilger/rust-lightning?rev=7a62cb4106d449bc4d1724920b73918d501bb3a9"]
+      git = "https://github.com/mikedilger/rust-lightning"
+      rev = "7a62cb4106d449bc4d1724920b73918d501bb3a9"
+      replace-with = "rust-lightning-upstream"
+
+      [source.rust-lightning-upstream]
+      git = "https://github.com/lightningdevkit/rust-lightning"
+      rev = "7a62cb4106d449bc4d1724920b73918d501bb3a9"
+    TOML
+
     ENV.append_to_rustflags "--cfg tokio_unstable"
     system "cargo", "install", *std_cargo_args(path: "gossip-bin", features: "lang-cjk")
   end
