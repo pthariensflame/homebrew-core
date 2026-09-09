@@ -10,7 +10,7 @@ class StrandsAgentsSops < Formula
   head "https://github.com/strands-agents/agent-sop.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "1bc31ad7008d29553931f89f2a81ee36fc01e551846e3854bd809f23b1b64403"
+    sha256 cellar: :any_skip_relocation, all: "f8f5dee65a037159a894fa3ad6887a60f0befc3c1cc6671aa7175a7ae4678900"
   end
 
   depends_on "certifi" => :no_linkage
