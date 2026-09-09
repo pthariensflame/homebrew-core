@@ -6,12 +6,11 @@ class Dskditto < Formula
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "77aed6edb4dd72dbd72789c70f133ad1ced9434d14d14113de5aae5744b28609"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "72a2e13c6d44e7da7fba371a10317c47409bf22a6d1067ebd1f1d38e2a7797eb"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6794c196365af15e59e612b836e971016347aeba90aa3948c997004519f166d6"
-    sha256 cellar: :any_skip_relocation, sonoma:        "2ccf4d828605f0eb27f330d9759256641d5eb3db06689ed270c573ea3b93e71e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "1c2bc6da92134992cf7772f612d8d4088d5aafc0aacd45f2a9c63b899fc23e9a"
-    sha256 cellar: :any,                 x86_64_linux:  "be75aea33d6dfd2e62f326cec7fc75bdd0f3b67d09234ad71e92cde90cc50f15"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "43b9a3a6af9afc9a8f5f58bf0ec275ba8a0817a916b6ee37ae93260e342f7947"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3930974b0722594b81ddcae9123e824b2dbfef1ecbf568710adc14bf6e07ad81"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "29d2e4e4b8f19abe90c554a92723adc0fc6efc391f3b3893ac7445edf6ae4287"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "aaf1f512c57c3ae604a924da96333d30f5aba2879f2d0dc05f6110af7485ff42"
+    sha256 cellar: :any,                 x86_64_linux:  "cbbdac950133b491e8a7af9a8e19fea81bd6c07bbcfe692790b89db45dc93cbf"
   end
 
   depends_on "go" => :build
