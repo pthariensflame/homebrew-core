@@ -1,10 +1,9 @@
 class Faust < Formula
   desc "Functional programming language for real time signal processing"
   homepage "https://faust.grame.fr"
-  url "https://github.com/grame-cncm/faust/releases/download/2.85.9/faust-2.85.9.tar.gz"
-  sha256 "0cd00968f81357b78df64c25aad12ec94bd4b75bd489ca0449fe7f7b1ad0efe1"
+  url "https://github.com/grame-cncm/faust/releases/download/2.88.0/faust-2.88.0.tar.gz"
+  sha256 "e4e175cf236924b5b7d4784cbb8c50cc01e211159e169655dd9e6d8f92b871d9"
   license "GPL-2.0-or-later"
-  revision 1
 
   # Upstream creates releases that use a stable tag (e.g., `v1.2.3`) but are
   # labeled as "pre-release" on GitHub before the version is released, so it's
@@ -28,13 +27,6 @@ class Faust < Formula
   depends_on "libmicrohttpd"
   depends_on "libsndfile"
   depends_on "llvm"
-
-  # Backport support for LLVM 23
-  patch do
-    url "https://github.com/grame-cncm/faust/commit/158e371feccc5f61a376276433b19a74d37aedce.patch?full_index=1"
-    sha256 "4f5752ac0a4df203d125700b58074b8e22bfce034f14f0e9d159669a0d786dbe"
-    type :backport
-  end
 
   def install
     # `brew linkage` doesn't like the pre-built Android libsndfile.so for faust2android.
