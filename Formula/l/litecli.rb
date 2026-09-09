@@ -9,12 +9,11 @@ class Litecli < Formula
   revision 4
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "17258ed044d8936e3544fb740060cb0ec9168aaab59f6a083fe8898922bbd296"
-    sha256 cellar: :any, arm64_sequoia: "be446aff92430a81d3df6f4b74a906000eb2d078ac76cb92226a001870b92f89"
-    sha256 cellar: :any, arm64_sonoma:  "8fa4ba38b371e8fa35ba96331ca977294d5eea8001f3888e135507046e70c317"
-    sha256 cellar: :any, sonoma:        "634cd4844b8ae6e769b3cf534b9f5aa4cdabcec2cc8c1c94f3856b33d9f7897c"
-    sha256 cellar: :any, arm64_linux:   "04b8915295e8e5ce5a9f45ac9d13735e612dd559813fe0d77827ebc3c79116a8"
-    sha256 cellar: :any, x86_64_linux:  "acfe93b6757876dae58baf591f425c793693485353d771af7ca42bfe016c36a0"
+    sha256 cellar: :any, arm64_tahoe:   "ab64562393e8205b8317d0145b831550fedac6a154ef19f246c8b38783f254c9"
+    sha256 cellar: :any, arm64_sequoia: "042051318c6bbdca17b2d90c271ca9bcc889f81298e69d8902da4736e6f76276"
+    sha256 cellar: :any, arm64_sonoma:  "4798bf90009ed60dfdf7e4ed27c13dffff21328987bd3c16a9df05aa9318c5eb"
+    sha256 cellar: :any, arm64_linux:   "a773b2a1a2669544d97fb893c1515b4f835f45ad2c03b1a9122925f719f9ab7d"
+    sha256 cellar: :any, x86_64_linux:  "5b9fe24c509992126b0d5648157535692bca88c9271f3cf55f45664dcc4dc133"
   end
 
   depends_on "rust" => :build # for jiter
