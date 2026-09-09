@@ -3,8 +3,8 @@ class Skillspector < Formula
 
   desc "Security scanner for AI agent skills"
   homepage "https://github.com/NVIDIA/SkillSpector"
-  url "https://github.com/NVIDIA/SkillSpector/archive/refs/tags/v2.11.1.tar.gz"
-  sha256 "50964fcbb1c965fd0fe3c392f058a5adc93c910d76506a1e0dac96f0fec4ed7b"
+  url "https://github.com/NVIDIA/SkillSpector/archive/refs/tags/v2.11.2.tar.gz"
+  sha256 "be47a3c40ed84ff3df768bf4fa3200b7cf69cda3f091e854e72ef8fb4b11281e"
   license "Apache-2.0"
 
   bottle do
@@ -45,13 +45,13 @@ class Skillspector < Formula
   end
 
   resource "boto3" do
-    url "https://files.pythonhosted.org/packages/50/26/48b3da85526a72a02df55e564481fc348e93699c15f0f502681b12ac2c8a/boto3-1.43.89.tar.gz"
-    sha256 "c28abbe472e9b7cad08807356311aeec51bde5218c18489da827045d2267bfd9"
+    url "https://files.pythonhosted.org/packages/67/0b/53f833efea7331aab106a65f1156e0035beed9bacbfcb309b128204468d4/boto3-1.43.90.tar.gz"
+    sha256 "4b669742d5b45b8fd20ca50ac414a4e4cf995ebb8f280d21be28676e71c97594"
   end
 
   resource "botocore" do
-    url "https://files.pythonhosted.org/packages/53/06/f63fb1befdf77af18539fb24ea01f2da0f13965ed5de091061708ac96416/botocore-1.43.89.tar.gz"
-    sha256 "f0574942970742657b0e0716cf08c2dfe6bef8e6de5fbb7081c3424e262b4cca"
+    url "https://files.pythonhosted.org/packages/6b/3e/29872261075d878581a31e9e98c512c0b85322a36e6d6784b9f0694a918d/botocore-1.43.90.tar.gz"
+    sha256 "a139ed601e8b8fb1d730022355fe2b284b8c15cfe9ac0f100254a35d2273e1d3"
   end
 
   resource "charset-normalizer" do
@@ -140,8 +140,8 @@ class Skillspector < Formula
   end
 
   resource "langchain-openai" do
-    url "https://files.pythonhosted.org/packages/58/aa/5b4dbe8f90c44729fb7800bfde113ce1bc7c9687115d2e0d20fb377671e9/langchain_openai-1.6.0.tar.gz"
-    sha256 "7c545cc1f2bee048a7e219f375b78cd820b32c876ccf825320e25e1e94132577"
+    url "https://files.pythonhosted.org/packages/b6/f3/18aeffe267f08c02041114ac42631bcbb2db02bfd538079826f88847fd34/langchain_openai-1.6.1.tar.gz"
+    sha256 "a09c329d6d9c5b5bf7025c0d5a5cc8e7ec8d784d662861809e1ec1cce1cd3d26"
   end
 
   resource "langchain-protocol" do
@@ -185,8 +185,8 @@ class Skillspector < Formula
   end
 
   resource "openai" do
-    url "https://files.pythonhosted.org/packages/f2/b0/1100c93f93e1c174205ce8d15a049a446f0dc88e9262c1f1f223fe6b9493/openai-3.8.0.tar.gz"
-    sha256 "6138a5a1333a1be9e4d1edea2d160b311542787b029543f87de4961c66358d16"
+    url "https://files.pythonhosted.org/packages/14/77/3508ca0f04f42124bb89ab6e3e853c144660b9a680165beb49cd48634bce/openai-3.9.0.tar.gz"
+    sha256 "fea0fe63d04a27e9da588f673e291183fbf4813767e9df743e351bb548afc60b"
   end
 
   resource "orjson" do
@@ -290,8 +290,8 @@ class Skillspector < Formula
   end
 
   resource "uuid-utils" do
-    url "https://files.pythonhosted.org/packages/e7/91/63938e0e7e7876658e5e40178e7c0735b53527886fe11797a11699c55edd/uuid_utils-0.17.0.tar.gz"
-    sha256 "abb5667a36119019b3fa320c4d10c21ebccfcc87c8a739e6a0056cee7f48dde2"
+    url "https://files.pythonhosted.org/packages/4c/80/cf6934a2030a5f6763f604314c1105f851d90aa1fe344c2692c3b88a9d95/uuid_utils-0.17.1.tar.gz"
+    sha256 "10c51d54ecdf0617640e505eae6d2e6443d8e414d4f9d6e8d43949a450c56e6b"
   end
 
   resource "websockets" do
