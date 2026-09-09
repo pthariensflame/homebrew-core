@@ -2,8 +2,8 @@ class Pc6001vx < Formula
   desc "PC-6001 emulator"
   # http://eighttails.seesaa.net/ gives 405 error
   homepage "https://github.com/eighttails/PC6001VX"
-  url "https://eighttails.up.seesaa.net/bin/PC6001VX_4.4.0_src.tar.gz"
-  sha256 "d31716ba9d2d96de9c664ed5006391e834dae54dcda574f1cf0bf7d074866333"
+  url "https://eighttails.up.seesaa.net/bin/PC6001VX_4.5.0_src.tar.gz"
+  sha256 "ed2599b0418a5d5a13a23546812c44168fb7bc222e2dc7e02d35b46f63e64087"
   license "LGPL-2.1-or-later"
   head "https://github.com/eighttails/PC6001VX.git", branch: "master"
 
@@ -21,6 +21,7 @@ class Pc6001vx < Formula
   depends_on "qttools" => :build
   depends_on "ffmpeg"
   depends_on "qtbase"
+  depends_on "qtdeclarative"
   depends_on "qtmultimedia"
   depends_on "sdl2-compat"
 
