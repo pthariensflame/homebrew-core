@@ -379,7 +379,6 @@ jobs:
                     cabal-install|\
                     docbook-xsl|\
                     emscripten|\
-                    erlang|\
                     ocaml|\
                     ocaml-findlib|\
                     ocaml-num|\
@@ -387,6 +386,7 @@ jobs:
                     rust\
                     )\\.rb"
                 - "Aliases/(\
+                    erlang|\
                     ghc|\
                     go|\
                     openjdk\
