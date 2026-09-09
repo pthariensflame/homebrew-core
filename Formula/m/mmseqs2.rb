@@ -31,11 +31,7 @@ class Mmseqs2 < Formula
     depends_on "zlib-ng-compat"
   end
 
-  # `git ls-remote https://github.com/soedinglab/MMseqs2.wiki.git HEAD`
-  resource "documentation" do
-    url "https://github.com/soedinglab/MMseqs2.wiki.git",
-        revision: "67ba9c6637b4b5121a73e5de034dd0c3414d2b81"
-  end
+  allow_network_access! :test
 
   def install
     args = %W[
@@ -47,14 +43,13 @@ class Mmseqs2 < Formula
     args << if Hardware::CPU.arm?
       "-DHAVE_ARM8=1"
     else
-      "-DHAVE_SSE4_1=1"
+      "-DHAVE_SSE2=1" # need to support Core 2
     end
 
     system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
 
-    resource("documentation").stage { doc.install Dir["*"] }
     pkgshare.install "examples"
     bash_completion.install "util/bash-completion.sh" => "mmseqs.sh"
   end
