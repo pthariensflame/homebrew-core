@@ -179,14 +179,23 @@ class Rust < Formula
       --disable-cargo-native-static
       --disable-docs
       --disable-lld
-      --set=rust.jemalloc
       --release-description=#{tap.user}
     ]
     if build.head?
       args << "--disable-rpath"
       args << "--release-channel=nightly"
+      args << "--set=build.allocator=jemalloc"
     else
       args << "--release-channel=stable"
+      args << "--set=rust.jemalloc" # TODO: use `--set=build.allocator=jemalloc` in 1.99.0 as old arg is deprecated
+    end
+    # Restrict slower optimizations to bottling
+    # https://github.com/rust-lang/rust/blob/main/src/doc/rustc-dev-guide/src/building/optimized-build.md
+    if build.bottle?
+      args += %w[
+        --set=rust.lto=thin
+        --set=rust.codegen-units=1
+      ]
     end
 
     system "./configure", *args
@@ -247,14 +256,13 @@ class Rust < Formula
       bin/"cargo" => [
         formula_opt_lib("libgit2")/shared_library("libgit2"),
         formula_opt_lib("libssh2")/shared_library("libssh2"),
-        formula_opt_lib("openssl@3")/shared_library("libcrypto"),
         formula_opt_lib("openssl@3")/shared_library("libssl"),
       ],
     }
-    unless OS.mac?
-      expected_linkage[bin/"cargo"] += [
-        formula_opt_lib("curl")/shared_library("libcurl"),
-      ]
+    expected_linkage[bin/"cargo"] << if OS.mac?
+      formula_opt_lib("openssl@3")/shared_library("libcrypto")
+    else
+      formula_opt_lib("curl")/shared_library("libcurl")
     end
     missing_linkage = []
     expected_linkage.each do |binary, dylibs|
