@@ -14,13 +14,11 @@ class DosboxStaging < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "88db4c380c543140ebfbd668033e1a8ca44e528a3acb1d1c9028be36f0373b30"
-    sha256 arm64_sequoia: "c20cfde08ded1db6ade3b0bd762e63008330ef568b4633fcb66a4b6a7e27c7ef"
-    sha256 arm64_sonoma:  "b8111b741e94d0a2aacf030ec1cfecf5e47545bf38177757b1d3942f7093e01e"
-    sha256 sonoma:        "3feabb1aecd2f540708f685c837a4c4c633bf941a783b44115388d1a2fb19531"
-    sha256 arm64_linux:   "e69923a5122d7e81660e996d7222b8a6af8de0f3d3211c47048af92bc4ffa93b"
-    sha256 x86_64_linux:  "86a154ce4e2d98e228d8fae799c47ec6f5c1a19d50bb439759a27bee4e6de011"
+    sha256               arm64_tahoe:   "6eefc723f61cee95d76f834671fc674b9207d52791b16305ed2afe476d9e7e8a"
+    sha256               arm64_sequoia: "bdfb33287fcd9b8e8ebd12641bfe10dc23928ad12f5c279de9f4539bdfb25869"
+    sha256               arm64_sonoma:  "ab66fbed8d0d032bbbc26784ed75ef16ce57c38fef36b908439527c674f1f896"
+    sha256               arm64_linux:   "db4c8c85ba32af9c14da0e700a913e5d45b34968fd881e763eda3878d25e1067"
+    sha256 cellar: :any, x86_64_linux:  "f897b12d7b9f6b831476ccb8a1ba7fcf82ee08ecbe4232b424051caf28b33955"
   end
 
   depends_on "asio" => :build
