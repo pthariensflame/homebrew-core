@@ -1,8 +1,8 @@
 class Ec < Formula
   desc "TUI 3-way git mergetool"
   homepage "https://github.com/chojs23/ec"
-  url "https://github.com/chojs23/ec/archive/refs/tags/v0.3.3.tar.gz"
-  sha256 "9598d57cd71c35c057ce92fda690380e3a138b44404ef14cbedf9f577772b71b"
+  url "https://github.com/chojs23/ec/archive/refs/tags/v0.4.1.tar.gz"
+  sha256 "70eaf75969cde5b823d8dc4a4d2e575ceab903edab8277212afc642b757e5a10"
   license "MIT"
 
   bottle do
