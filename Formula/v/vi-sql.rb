@@ -6,11 +6,11 @@ class ViSql < Formula
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "6a4f4a73c0c012004e1ce3685caf46b5d85dd3318924c359f46c02e280e84f80"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6a4f4a73c0c012004e1ce3685caf46b5d85dd3318924c359f46c02e280e84f80"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6a4f4a73c0c012004e1ce3685caf46b5d85dd3318924c359f46c02e280e84f80"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "dce5ed47b1f69f738c9944aaf2c863cb71f95b260a7a8342de8bff10f85167cb"
-    sha256 cellar: :any,                 x86_64_linux:  "95a1442bf0d42147f0a4b8db19aa10bc46b9087fa406c30df2a4291f2f207c46"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d0a48c86210f9cf3c68b1a7f212dcb34faa90b5c6c24e465929fc8c7d091920b"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d0a48c86210f9cf3c68b1a7f212dcb34faa90b5c6c24e465929fc8c7d091920b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d0a48c86210f9cf3c68b1a7f212dcb34faa90b5c6c24e465929fc8c7d091920b"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "afa50f26b5f2b700749e9b5482fc17739cf2ce5213d2f7f2beef6dd75c00785c"
+    sha256 cellar: :any,                 x86_64_linux:  "56f4bca80f7e89e9e6dd2722408e3f0afd992fac162e2493c24679f3fb4ce4d1"
   end
 
   depends_on "go" => :build
