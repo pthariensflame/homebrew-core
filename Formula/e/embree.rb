@@ -25,19 +25,15 @@ class Embree < Formula
   depends_on "tbb"
 
   def install
-    args = %w[
+    # Enable maximum ISA as it is detected at runtime
+    ENV.runtime_cpu_detection
+    max_isa = Hardware::CPU.intel? ? "AVX512" : "NEON2X"
+    args = %W[
       -DEMBREE_IGNORE_CMAKE_CXX_FLAGS=OFF
       -DEMBREE_ISPC_SUPPORT=ON
       -DEMBREE_TUTORIALS=OFF
+      -DEMBREE_MAX_ISA=#{max_isa}
     ]
-    if Hardware::CPU.intel?
-      max_isa = if OS.mac? && MacOS.version.requires_sse4?
-        "SSE4.2"
-      else
-        "SSE2"
-      end
-      args << "-DEMBREE_MAX_ISA=#{max_isa}"
-    end
 
     system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
