@@ -1,8 +1,8 @@
 class Rubocop < Formula
   desc "Ruby static code analyzer and formatter, based on the community Ruby style guide"
   homepage "https://docs.rubocop.org"
-  url "https://github.com/rubocop/rubocop/archive/refs/tags/v1.90.0.tar.gz"
-  sha256 "c1e5dba493215d78e7f4812c4329948cfd98e115b3b9ad8772d13e616abc0573"
+  url "https://github.com/rubocop/rubocop/archive/refs/tags/v1.91.0.tar.gz"
+  sha256 "e4fbd63ea5c3a7cc937f282579b4adedcdfe37a30df3d3aa2707ca930978b409"
   license "MIT"
   head "https://github.com/rubocop/rubocop.git", branch: "master"
 
