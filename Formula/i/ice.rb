@@ -13,12 +13,11 @@ class Ice < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "e5531b89902400d1d4c92be7fba9f2f23d698cf1d294c7df5acbccd4560973d4"
-    sha256 cellar: :any, arm64_sequoia: "0e908f79827033d24305469f2e446aaee91cd7cec82f4e5340a49de087f6ee5c"
-    sha256 cellar: :any, arm64_sonoma:  "554344817bb31eba6bf45a8ca40f545612eb22bbabdbe2dd86bd4f9302125420"
-    sha256 cellar: :any, sonoma:        "0f68d166703bf0a112710432b7f366334d4d781a8ebc0dffb19a3c2871246e1c"
-    sha256 cellar: :any, arm64_linux:   "89bb7e85d0ea9aaca429730a46207589bfbd9dfc8f749c9226646a446eaa8d75"
-    sha256 cellar: :any, x86_64_linux:  "dd11f21ce440a415e2652185e6cea0e8e8dde2eba6d365da127a70289f1de9c3"
+    sha256 cellar: :any, arm64_tahoe:   "e3a93f5d3f46074fe78b962ee60cb01750016120a25894a2699a2508de0fecc2"
+    sha256 cellar: :any, arm64_sequoia: "a3af5ff17d867aadfd1f4938daee712f1a352158f5405edd4b2b7e07740f4ead"
+    sha256 cellar: :any, arm64_sonoma:  "1a5688b1352d43fd82d5e5750eb76a47e364753084e198336de3f1dde53c16ea"
+    sha256 cellar: :any, arm64_linux:   "89ba380f6d5b9e05f011c61b99558e71f2649e6a8ef039f6e4c0b95efbfdd113"
+    sha256 cellar: :any, x86_64_linux:  "b5f4194d6114e3264fed48972c2c4334ac4e20a1ec6265e84fd7fd5be91daedf"
   end
 
   depends_on "lmdb"
