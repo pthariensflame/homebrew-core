@@ -18,14 +18,14 @@ class Lft < Formula
     sha256 cellar: :any,                 x86_64_linux:  "ca27368d53945a8ae132aa3133bc4c8314c3fd7635138bf97d9b5f7c7ab50fc0"
   end
 
+  depends_on "pkgconf" => :build
+  depends_on "c-ares"
+  depends_on "ncurses"
+
   uses_from_macos "libpcap"
 
   def install
-    args = %w[
-      --disable-async-dns
-      --disable-ncurses
-    ]
-    system "./configure", *args, *std_configure_args
+    system "./configure", *std_configure_args
     system "make", "install"
   end
 
