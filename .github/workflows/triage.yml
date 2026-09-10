@@ -340,7 +340,6 @@ jobs:
                 glib|\
                 gtk\\+3|\
                 jpeg-turbo|\
-                libomp|\
                 libpng|\
                 node|\
                 numpy|\
@@ -351,7 +350,6 @@ jobs:
                 python@3.14|\
                 qtbase|\
                 readline|\
-                xz|\
                 zstd\
                 ).rb"
               keep_if_no_match: true
@@ -364,6 +362,7 @@ jobs:
                 erlang|\
                 ghc|\
                 go|\
+                libxml2|\
                 ocaml|\
                 ocaml-findlib|\
                 openjdk|\
