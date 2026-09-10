@@ -343,7 +343,6 @@ jobs:
                 libpng|\
                 node|\
                 numpy|\
-                openblas|\
                 openssl@3|\
                 pango|\
                 pcre2|\
