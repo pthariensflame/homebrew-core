@@ -27,8 +27,16 @@ class Iqtree3 < Formula
   end
 
   resource "lsd2" do
-    url "https://github.com/tothuhien/lsd2.git",
-        revision: "c61110f3a4fa05325b45c97b2134792ff9d55d4c"
+    url "https://github.com/tothuhien/lsd2/archive/c61110f3a4fa05325b45c97b2134792ff9d55d4c.tar.gz"
+    version "c61110f3a4fa05325b45c97b2134792ff9d55d4c"
+    sha256 "9bbeaa0f8f35783c1d8dec74df6c93a804dbca808fa04484f9123de4e7258b53"
+
+    livecheck do
+      url "https://api.github.com/repos/iqtree/iqtree3/contents/lsd2?ref=v#{LATEST_VERSION}"
+      strategy :json do |json|
+        json["sha"]
+      end
+    end
   end
 
   def install
