@@ -1,8 +1,8 @@
 class Janet < Formula
   desc "Dynamic language and bytecode vm"
   homepage "https://janet-lang.org"
-  url "https://github.com/janet-lang/janet/archive/refs/tags/v1.42.0.tar.gz"
-  sha256 "8d246df6e4034e4b7b8a55a468a43865bf4ef0cfe543de4ba81db4b1f0b39a0f"
+  url "https://github.com/janet-lang/janet/archive/refs/tags/v1.42.1.tar.gz"
+  sha256 "2391f8c6565742dad1c5e8872ad1d570b64a239d5d1ef11a188fc6b400457a04"
   license "MIT"
   head "https://github.com/janet-lang/janet.git", branch: "master"
 
