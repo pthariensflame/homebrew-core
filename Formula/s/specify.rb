@@ -3,8 +3,8 @@ class Specify < Formula
 
   desc "Toolkit to help you get started with Spec-Driven Development"
   homepage "https://github.github.com/spec-kit/"
-  url "https://github.com/github/spec-kit/archive/refs/tags/v1.0.5.tar.gz"
-  sha256 "76d4341b7446212807ef8a5e261cc6268dec3891d54312fa21efa48133a6aeb7"
+  url "https://github.com/github/spec-kit/archive/refs/tags/v1.0.6.tar.gz"
+  sha256 "31c5db62974a943b68304ef881c35788e0a165d2d26e2bbb5a7aba6fef4b8045"
   license "MIT"
 
   bottle do
@@ -57,8 +57,8 @@ class Specify < Formula
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/69/b7/802a56eca9f2fac455b8bab5375a2647b0f0e14a2cd63ef077de3c4a7658/platformdirs-4.11.7.tar.gz"
-    sha256 "4f41487eeeeeb07f3a6625e61d9bc0ae6809f92d3386dbd74392fbb76108104d"
+    url "https://files.pythonhosted.org/packages/53/18/f3bb8ef0d3b930692343da8aa4d3cbcd6749477c053959395ac81965a6e9/platformdirs-4.11.8.tar.gz"
+    sha256 "f23abafea7dd4276d1f29104b83598d7dcc567cafd07c9c951e66665645437fc"
   end
 
   resource "pygments" do
