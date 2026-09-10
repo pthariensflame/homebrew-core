@@ -46,6 +46,20 @@ class LlvmAT22 < Formula
     resolves "https://github.com/llvm/llvm-project/pull/111397"
   end
 
+  # Backport fixes for macOS 27
+  patch do
+    url "https://github.com/llvm/llvm-project/commit/18c1cbce6874a7341f357014befb66d4c11a04a9.patch?full_index=1"
+    sha256 "e2d7fc13d39948e8d957f386fb8081abdda50f76ba61d4fa9ecdfcd3556423e3"
+    type :backport
+    resolves "https://github.com/llvm/llvm-project/pull/203680"
+  end
+  patch do
+    url "https://github.com/llvm/llvm-project/commit/6e562169fd026e26124fe4e2e435d3a4c522ffe2.patch?full_index=1"
+    sha256 "8091d44d10ad585052fbb13669095b8a804bc00681b3df4ff32dc37c48784e47"
+    type :backport
+    resolves "https://github.com/llvm/llvm-project/pull/205044"
+  end
+
   def clang_config_file_dir
     etc/"clang"
   end
