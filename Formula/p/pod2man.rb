@@ -11,12 +11,11 @@ class Pod2man < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "72f1352cd5fdf744fe9ceea9b3e5bc54bf57bc21f38675b563a23c6756b5dab4"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "72f1352cd5fdf744fe9ceea9b3e5bc54bf57bc21f38675b563a23c6756b5dab4"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "72f1352cd5fdf744fe9ceea9b3e5bc54bf57bc21f38675b563a23c6756b5dab4"
-    sha256 cellar: :any_skip_relocation, sonoma:        "5c4d114fd203bdb437dafd54d3c9582d020ace5f9351b08076da0582ac922e28"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "106e94c77fc46f089b21b704f5bc173c583a2b18bece4997fb58a897b2e19d01"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "839cea97df94dfacac278c9bd5a99986c0aa99d119f018395b28bda572b066c1"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3d208af3aedeb2139a4f1580f4115266e27849058c5aff53be2af97a98a8863c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3d208af3aedeb2139a4f1580f4115266e27849058c5aff53be2af97a98a8863c"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3d208af3aedeb2139a4f1580f4115266e27849058c5aff53be2af97a98a8863c"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "10f3eae739afacfc36189ddf27a9c44b68f7debffe082588169796060cc762c7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6e10d72fb170c0c3863547e2d62c549b48a5cc4fedafb5ff97a2fac7b246f923"
   end
 
   keg_only "it conflicts with the pod2man that ships with Perl"
