@@ -336,17 +336,13 @@ jobs:
                 cmake|\
                 freetype|\
                 gcc|\
-                gettext|\
-                glib|\
                 gtk\\+3|\
                 jpeg-turbo|\
                 libpng|\
                 node|\
                 numpy|\
-                openssl@3|\
                 pango|\
                 pcre2|\
-                python@3.14|\
                 qtbase|\
                 readline|\
                 zstd\
@@ -359,13 +355,17 @@ jobs:
                 cabal-install|\
                 docbook-xsl|\
                 erlang|\
+                gettext|\
                 ghc|\
+                glib|\
                 go|\
                 libxml2|\
                 ocaml|\
                 ocaml-findlib|\
                 openjdk|\
+                openssl@3|\
                 pkgconf|\
+                python@3.14|\
                 rust\
                 ).rb"
               keep_if_no_match: true
