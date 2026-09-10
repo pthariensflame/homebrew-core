@@ -30,6 +30,9 @@ class Libcuefile < Formula
 
   depends_on "cmake" => :build
 
+  # Fix comparison operators for proper range checking.
+  patch :DATA
+
   def install
     # Fix compile with newer Clang
     ENV.append_to_cflags "-Wno-implicit-function-declaration" if DevelopmentTools.clang_build_version >= 1403
@@ -44,3 +47,27 @@ class Libcuefile < Formula
     include.install "include/cuetools/"
   end
 end
+
+__END__
+diff --git a/src/cd.c b/src/cd.c
+index 2686a77..1f4e9b4 100755
+--- a/src/cd.c
++++ b/src/cd.c
+@@ -173,7 +173,7 @@ int cd_get_ntrack (Cd *cd)
+
+ Track *cd_get_track (Cd *cd, int i)
+ {
+-	if (0 < i <= cd->ntrack)
++	if (0 < i && i <= cd->ntrack)
+ 		return cd->track[i - 1];
+
+ 	return NULL;
+@@ -306,7 +306,7 @@ int track_get_nindex (Track *track)
+
+ long track_get_index (Track *track, int i)
+ {
+-	if (0 <= i < track->nindex)
++	if (0 <= i && i < track->nindex)
+ 		return track->index[i];
+
+ 	return -1;
