@@ -1,8 +1,8 @@
 class Hunk < Formula
   desc "Review-first terminal diff viewer for agent-authored changesets"
   homepage "https://hunk.dev/"
-  url "https://github.com/modem-dev/hunk/archive/refs/tags/v0.21.1.tar.gz"
-  sha256 "47a7fc82112e334fcc592d7b3bf43a9a5822f933655db6547bc98446392fb2be"
+  url "https://github.com/modem-dev/hunk/archive/refs/tags/v0.22.0.tar.gz"
+  sha256 "dd591936f924933746b45d0ecdd39c7fda625f45619b467ca577a601b0f67b04"
   license "MIT"
   head "https://github.com/modem-dev/hunk.git", branch: "main"
 
@@ -31,9 +31,10 @@ class Hunk < Formula
     # Build the standalone binary (bun build --compile embeds the Bun runtime)
     system "bun", "run", "build:bin"
 
-    # Install the compiled binary and bundled skills
+    # Install the compiled binary and bundled skills. The repository-root
+    # `skills` holds maintainer-only documents that upstream does not ship.
     libexec.install "dist/hunk" => "hunk"
-    libexec.install "skills"
+    libexec.install "packages/hunk/skills"
     (bin/"hunk").write_env_script libexec/"hunk", HUNK_INSTALL_SOURCE: "homebrew"
   end
 
