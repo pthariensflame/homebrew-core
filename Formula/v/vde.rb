@@ -26,6 +26,7 @@ class Vde < Formula
   depends_on "libtool" => :build
 
   def install
+    ENV.append "CFLAGS", "-std=gnu17" if DevelopmentTools.clang_build_version >= 1700
     system "autoreconf", "--force", "--install", "--verbose"
     system "./configure", *std_configure_args
     system "make", "install"
