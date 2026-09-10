@@ -1,8 +1,8 @@
 class Openlore < Formula
   desc "Persistent architectural memory and structural cognition for AI coding agents"
   homepage "https://github.com/clay-good/OpenLore"
-  url "https://registry.npmjs.org/openlore/-/openlore-3.1.0.tgz"
-  sha256 "2c985d9576f3f2d13fe21fe16ae6d0cc7ab2cc5927317f0b08c69c8fb82a90f8"
+  url "https://registry.npmjs.org/openlore/-/openlore-3.1.1.tgz"
+  sha256 "cd601e8ff1eef32320ce67cdf41b6f3ceca8651c50daa93043f4ed1d7d530d2a"
   license "MIT"
 
   bottle do
@@ -46,10 +46,10 @@ class Openlore < Formula
                   .each { |gyp| system "npm", "rebuild", gyp.parent.basename.to_s }
     end
 
-    # Keep only the native `onnxruntime-node` binaries
-    node_modules.glob("onnxruntime-node/bin/*/*")
+    # Keep only the native `onnxruntime-node` binaries, which `@lancedb/lancedb` also nests
+    node_modules.glob("**/onnxruntime-node/bin/*/*")
                 .each { |dir| rm_r(dir) if dir.basename.to_s != os }
-    node_modules.glob("onnxruntime-node/bin/*/*/*")
+    node_modules.glob("**/onnxruntime-node/bin/*/*/*")
                 .each { |dir| rm_r(dir) if dir.basename.to_s != arch }
 
     deuniversalize_machos node_modules/"fsevents/fsevents.node" if OS.mac?
