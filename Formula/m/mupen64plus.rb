@@ -61,7 +61,7 @@ class Mupen64plus < Formula
 
   test do
     # Disable test in Tahoe CI because it hangs because a display is not available.
-    return if OS.mac? && MacOS.version == :tahoe && ENV["HOMEBREW_GITHUB_ACTIONS"]
+    return if OS.mac? && MacOS.version >= :tahoe && ENV["HOMEBREW_GITHUB_ACTIONS"]
 
     resource "rom" do
       url "https://github.com/mupen64plus/mupen64plus-rom/raw/76ef14c876ed036284154444c7bdc29d19381acc/m64p_test_rom.v64"
