@@ -87,11 +87,12 @@ class Rust < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "6d42a8255e121710825d43a83cdaf28fb9d2be8d25159d2170805efe5f8493ae"
-    sha256 cellar: :any, arm64_sequoia: "449dff6487939ed5d3b623c675ed8ca4e015ad4bc3b6dd53c4d063a924866e7f"
-    sha256 cellar: :any, arm64_sonoma:  "6bddeec978894846e6d92b0ae6718137c4d43d999fd15f36cc0caa71e34d75a5"
-    sha256 cellar: :any, arm64_linux:   "3c60ded411b279386f8fe955fbdfa668f30bde1f89ede40d11dfa2ab611dfb41"
-    sha256 cellar: :any, x86_64_linux:  "7d925d70482067a119020630634f7e12cde7c738a7066d402729fb1d59051d4d"
+    rebuild 1
+    sha256 cellar: :any, arm64_tahoe:   "409411d3aacd29a2528ca290f5fbbaca4acb2f1db8fa44c3d30480c30e79231b"
+    sha256 cellar: :any, arm64_sequoia: "4a1bbbb08569ac2f1837bed5ce931e707f6c4666118d933f6372cb9438d7794a"
+    sha256 cellar: :any, arm64_sonoma:  "5928033c1a2b6639206995f9adf81d82d1d29fa4c7364628fb3e68b031b6d61e"
+    sha256 cellar: :any, arm64_linux:   "3f53535b1c1bc548a7282e6c23beaca99def881a5786354aba04d0cb3f572166"
+    sha256 cellar: :any, x86_64_linux:  "b42a09b9ba34ccbce8b84e0e8bce44680360c1ff261a3bd952fc586e6c7bd04c"
   end
 
   depends_on "libgit2"
@@ -179,14 +180,23 @@ class Rust < Formula
       --disable-cargo-native-static
       --disable-docs
       --disable-lld
-      --set=rust.jemalloc
       --release-description=#{tap.user}
     ]
     if build.head?
       args << "--disable-rpath"
       args << "--release-channel=nightly"
+      args << "--set=build.allocator=jemalloc"
     else
       args << "--release-channel=stable"
+      args << "--set=rust.jemalloc" # TODO: use `--set=build.allocator=jemalloc` in 1.99.0 as old arg is deprecated
+    end
+    # Restrict slower optimizations to bottling
+    # https://github.com/rust-lang/rust/blob/main/src/doc/rustc-dev-guide/src/building/optimized-build.md
+    if build.bottle?
+      args += %w[
+        --set=rust.lto=thin
+        --set=rust.codegen-units=1
+      ]
     end
 
     system "./configure", *args
@@ -247,14 +257,13 @@ class Rust < Formula
       bin/"cargo" => [
         formula_opt_lib("libgit2")/shared_library("libgit2"),
         formula_opt_lib("libssh2")/shared_library("libssh2"),
-        formula_opt_lib("openssl@3")/shared_library("libcrypto"),
         formula_opt_lib("openssl@3")/shared_library("libssl"),
       ],
     }
-    unless OS.mac?
-      expected_linkage[bin/"cargo"] += [
-        formula_opt_lib("curl")/shared_library("libcurl"),
-      ]
+    expected_linkage[bin/"cargo"] << if OS.mac?
+      formula_opt_lib("openssl@3")/shared_library("libcrypto")
+    else
+      formula_opt_lib("curl")/shared_library("libcurl")
     end
     missing_linkage = []
     expected_linkage.each do |binary, dylibs|
