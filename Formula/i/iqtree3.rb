@@ -1,8 +1,8 @@
 class Iqtree3 < Formula
   desc "Phylogenetics by maximum likelihood"
   homepage "http://www.iqtree.org"
-  url "https://github.com/iqtree/iqtree3/archive/refs/tags/v3.1.3.tar.gz"
-  sha256 "b992e4c4a5429ebebf5b37ae7134dc3d6e3ea616f04cbb021947dfb7d034fbd9"
+  url "https://github.com/iqtree/iqtree3/archive/refs/tags/v3.1.4.tar.gz"
+  sha256 "8bcba50d25263fb7e5d52d308f7d2a35545dd53f96e04cf44e6a0515be0f823b"
   license "GPL-2.0-or-later"
 
   livecheck do
