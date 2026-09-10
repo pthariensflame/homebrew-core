@@ -178,7 +178,9 @@ jobs:
 
       - name: Checkout branch for bottle commit
         working-directory: ${{steps.set-up-homebrew.outputs.repository-path}}
-        run: git checkout -b "$BOTTLE_BRANCH" origin/HEAD
+        run: |
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          git checkout -b "$BOTTLE_BRANCH" origin/HEAD
 
       - name: Upload bottles to GitHub Packages
         id: upload
