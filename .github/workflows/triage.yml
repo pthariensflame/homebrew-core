@@ -340,7 +340,6 @@ jobs:
                 jpeg-turbo|\
                 libpng|\
                 node|\
-                numpy|\
                 pango|\
                 pcre2|\
                 qtbase|\
@@ -366,7 +365,8 @@ jobs:
                 openssl@3|\
                 pkgconf|\
                 python@3.14|\
-                rust\
+                rust|\
+                zlib-ng-compat\
                 ).rb"
               keep_if_no_match: true
               allow_any_match: true
