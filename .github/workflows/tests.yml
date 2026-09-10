@@ -252,7 +252,7 @@ jobs:
         env:
           HOMEBREW_DOWNLOAD_CONCURRENCY: ${{ needs.setup_tests.outputs.download-concurrency }}
           TEST_BOT_FORMULAE_ARGS: ${{ needs.setup_tests.outputs.test-bot-formulae-args }}
-          TESTING_FORMULAE: ${{ needs.formulae_detect.outputs.testing_formulae }}
+          TESTING_FORMULAE: ${{ matrix.testing_formulae }}
           ADDED_FORMULAE: ${{ needs.formulae_detect.outputs.added_formulae }}
           DELETED_FORMULAE: ${{ needs.formulae_detect.outputs.deleted_formulae }}
         working-directory: ${{ env.BOTTLES_DIR }}

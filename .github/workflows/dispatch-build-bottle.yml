@@ -151,14 +151,6 @@ jobs:
       BOTTLE_BRANCH: ${{github.actor}}/dispatch/${{inputs.formula}}/${{github.run_id}}
       BOTTLES_DIR: ${{ github.workspace }}/bottles
     steps:
-      - name: Check that we're not uploading macOS 27 bottles
-        run: |
-          if [[ "${DISPATCH_BUILD_BOTTLE_RUNNER}" =~ (^|,)[[:space:]]*27-arm64[[:space:]]*($|,) ]]
-          then
-            echo "::error ::Please don't upload macOS 27 bottles until RC."
-            exit 1
-          fi
-
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@3cdb78d0f62ad29dd32de765782654f4eedea607 # 2026.08.31.1
@@ -191,7 +183,9 @@ jobs:
 
       - name: Checkout branch for bottle commit
         working-directory: ${{steps.set-up-homebrew.outputs.repository-path}}
-        run: git checkout -b "$BOTTLE_BRANCH" origin/HEAD
+        run: |
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          git checkout -b "$BOTTLE_BRANCH" origin/HEAD
 
       - name: Upload bottles to GitHub Packages
         id: upload
