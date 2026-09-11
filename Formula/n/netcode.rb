@@ -6,11 +6,12 @@ class Netcode < Formula
   license "BSD-3-Clause"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "608699dca99f5bedea31d89f9971628310d7290926bfdcc2513480adc1cc7fca"
-    sha256 cellar: :any, arm64_sequoia: "07fee9ca5d0d77724934f361c6c89d3476a20b22c1dd8ac731803a187cb94c18"
-    sha256 cellar: :any, arm64_sonoma:  "a2d2fa90e65501ce9fc5a863835db02ac992ef44d1d8db335fc75f0f49fab190"
-    sha256 cellar: :any, arm64_linux:   "4edac38d740b28ab6b27e97e1234d7b97c513e1408cb940409f127ed74312f00"
-    sha256 cellar: :any, x86_64_linux:  "4a72abc5856cc675b415416bcf61db870bfc5fb8f4479755bef06a45d86ea6b6"
+    sha256 cellar: :any, arm64_golden_gate: "88ad9a693e824c55b440bac3cd998b8ac2b48fce7279e7bac0cf674db310f848"
+    sha256 cellar: :any, arm64_tahoe:       "608699dca99f5bedea31d89f9971628310d7290926bfdcc2513480adc1cc7fca"
+    sha256 cellar: :any, arm64_sequoia:     "07fee9ca5d0d77724934f361c6c89d3476a20b22c1dd8ac731803a187cb94c18"
+    sha256 cellar: :any, arm64_sonoma:      "a2d2fa90e65501ce9fc5a863835db02ac992ef44d1d8db335fc75f0f49fab190"
+    sha256 cellar: :any, arm64_linux:       "4edac38d740b28ab6b27e97e1234d7b97c513e1408cb940409f127ed74312f00"
+    sha256 cellar: :any, x86_64_linux:      "4a72abc5856cc675b415416bcf61db870bfc5fb8f4479755bef06a45d86ea6b6"
   end
 
   depends_on "cmake" => :build
