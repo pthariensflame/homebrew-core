@@ -6,7 +6,7 @@ class EasCli < Formula
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "d4aec3d142a026889140eddac8f0ce4c563baa62c90aca0227144842153f1c9a"
+    sha256 cellar: :any_skip_relocation, all: "ec9cd123896e93a80eb5c1750617b980b1a131720f752aed0f6d7f42c655c91e"
   end
 
   depends_on "node"
